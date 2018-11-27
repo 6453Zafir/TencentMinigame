@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 1c0e23b0d5c0648f89c1faf8616a0008
+timeCreated: 1543053998
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 12
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: QXyingbili
+  fontNames:
+  - QXyingbili
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -24,8 +24,8 @@ public class UIController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        setText(Ink,GameController.InkNum.ToString());
-        setText(Level, GameController.LevelNum.ToString());
+        //setText(Ink,GameController.InkNum.ToString());
+        //setText(Level, GameController.LevelNum.ToString());
 
 	}
 

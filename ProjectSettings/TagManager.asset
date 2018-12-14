@@ -41,6 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: PaperBG
+    uniqueID: 3297825695
+    locked: 0
   - name: Far
     uniqueID: 773253493
     locked: 0

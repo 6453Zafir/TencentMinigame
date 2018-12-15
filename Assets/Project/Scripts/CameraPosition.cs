@@ -15,12 +15,16 @@ public class CameraPosition : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+    }
+    private void FixedUpdate()
+    {
         this.transform.position = new Vector3(this.transform.position.x, player.transform.position.y, this.transform.position.z);
-        if(player.transform.position.x-this.transform.position.x>=rightDis)
+        if (player.transform.position.x - this.transform.position.x >= rightDis)
         {
-            this.transform.position = new Vector3(this.transform.position.x+moveSpeed, player.transform.position.y, this.transform.position.z);
+            this.transform.position = new Vector3(this.transform.position.x + moveSpeed, player.transform.position.y, this.transform.position.z);
         }
-        else if (player.transform.position.x - this.transform.position.x <= -leftDis)
+        else if (player.transform.position.x - this.transform.position.x <= leftDis)
         {
             this.transform.position = new Vector3(this.transform.position.x - moveSpeed, player.transform.position.y, this.transform.position.z);
         }

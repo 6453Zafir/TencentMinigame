@@ -23,13 +23,13 @@ public class BGController : MonoBehaviour {
         if (bgPosition.x + total_length / 2.0f < cameraPosition.x)
         {
             bgPosition.x += total_length;
-            bgPosition.y = Camera.main.transform.position.y + 5;
+            bgPosition.y = Camera.main.transform.position.y + 2;
             this.transform.position = bgPosition;
         }
         if (bgPosition.x - total_length / 2.0f > cameraPosition.x)
         {
             bgPosition.x -= total_length;
-            bgPosition.y = Camera.main.transform.position.y + 5;
+            bgPosition.y = Camera.main.transform.position.y + 2;
             this.transform.position = bgPosition;
         }
     }

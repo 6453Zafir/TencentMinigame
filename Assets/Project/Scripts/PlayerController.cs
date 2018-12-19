@@ -6,32 +6,96 @@ public class PlayerController : MonoBehaviour {
 
     private Rigidbody2D rig;
     public float speed;
+    public float windforce;
+   // private Vector2 previous_v = Vector2.zero;
     private int face;//记录朝向
-	// Use this for initialization
-	void Start () {
+    private Vector2 wind_direction = Vector2.zero;//风向的单位向量
+    public static bool can_draw_blue;//是否青画笔
+    public static bool can_draw_red;//是否用红画笔
+    public static bool can_draw_black;//是否用黑色画笔
+    public static bool fire_count=false;//火开始生效，开始计时
+    public static bool wind_count = false;//风力开始生效，开始计时
+    public static float begin_time=0.0f;
+    public GameObject Draw_blue;
+    // Use this for initialization
+
+    void Start () {
         rig = GetComponent<Rigidbody2D>();
         speed = 3.6f;
+        windforce = 15.0f;
         face = 1;//开始向右
+        can_draw_blue = false;
+        can_draw_red = false;
+        can_draw_black = false;
+        //begin_count = false;
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
 		
-	}
+    }
 
     void FixedUpdate()
     {
+        
         if (Input.GetKey(KeyCode.A))
         {
-            rig.velocity = new Vector2(-speed,rig.velocity.y);
+            rig.velocity = new Vector2(-speed,rig.velocity.y);      
         }
         else if (Input.GetKey(KeyCode.D))
         {
             rig.velocity = new Vector2(speed, rig.velocity.y);
+        }
+        else if (Input.GetKeyDown(KeyCode.E))
+        {//进入青色画笔
+            can_draw_blue = !can_draw_blue;
+            can_draw_red = false;
+            can_draw_black = false;
+            wind_count = false;
+            fire_count = false;
+        }
+        else if (Input.GetKeyDown(KeyCode.R))
+        {//启用效果
+            can_draw_red = false;
+            can_draw_blue = false;
+            can_draw_black = false;
+            wind_count = true;
+            fire_count = true;
+            begin_time = Time.time;
+        }
+        else if (Input.GetKeyDown(KeyCode.T))
+        {//进入红画笔
+            can_draw_red = !can_draw_red;
+            can_draw_black = false;
+            can_draw_blue = false;
+            wind_count = false;
+            fire_count = false;           
+        }
+        else if (Input.GetKeyDown(KeyCode.Y))
+        {//进入黑画笔
+            can_draw_black = !can_draw_black;
+            can_draw_blue = false;
+            can_draw_red = false;
         }
         if (rig.velocity.x < 0)
             this.transform.localEulerAngles = new Vector3(this.transform.localEulerAngles.x,180,this.transform.localEulerAngles.z);
         else if (rig.velocity.x > 0)
             this.transform.localEulerAngles = new Vector3(this.transform.localEulerAngles.x,0, this.transform.localEulerAngles.z);
     }
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        
+        if (wind_count)//画完了才开始有力的作用
+        {
+            wind_direction = (DrawBlueLine.wind_end - DrawBlueLine.wind_start);//风向的单位向量
+            wind_direction = wind_direction.normalized;         
+            rig.AddForce(wind_direction * windforce,ForceMode2D.Force);
+
+        }
+
+
+
+    }
+    
 }

@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags: []
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - CamreaIngnore
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: PaperBG
+    uniqueID: 3297825695
+    locked: 0
+  - name: Far
+    uniqueID: 773253493
+    locked: 0
+  - name: FarMiddle
+    uniqueID: 1635818453
+    locked: 0
+  - name: Middle
+    uniqueID: 2178676849
+    locked: 0
+  - name: Player
+    uniqueID: 1388878485
+    locked: 0
+  - name: Near
+    uniqueID: 2281463709
+    locked: 0

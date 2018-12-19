@@ -8,10 +8,21 @@ public class GameController : MonoBehaviour {
     public static int InkNum = 30;
     public static int TotalInk = 30;
     public static int CurrentTool = 10;
+    //黑色画笔控制
+    public static float BlackDistance = 30;
+    public static float BlackTotalDistance = 30;
+    public static int BlackLine_numzero = 0;
+    public static int BlackLine_num = 0;
+    //红色画笔控制
+    public static float RedDistance = 30;
+    public static float RedTotalDistance = 30;
+    public static int RedLine_numzero = 0;
+    public static int RedLine_num = 0;
+    public static int Fire_num = 0;
+    public static int Fire_numzero = 0;
 
-
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		
 	}
 	

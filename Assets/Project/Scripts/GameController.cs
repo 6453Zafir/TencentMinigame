@@ -21,15 +21,13 @@ public class GameController : MonoBehaviour {
     public static int Fire_num = 0;
     public static int Fire_numzero = 0;
 
-    public Material NormalMat, CaveMat;
+
 
     private GameObject Player;
-    private GameObject[] rollingBGs;
     float duration = 2.0f;
     private void Awake()
     {
         Player = GameObject.FindGameObjectWithTag("Player").gameObject;
-        rollingBGs = GameObject.FindGameObjectsWithTag("RollingBg");
     }
 
     // Use this for initialization
@@ -40,14 +38,5 @@ public class GameController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        //if (Player.transform.position.x > 340f){
-            foreach (GameObject bg in rollingBGs) {
-                float lerp = Mathf.PingPong(Time.time, duration) / duration;
-                if (bg.GetComponent<SpriteRenderer>() != null) {
-                    print(bg.name);
-
-                }
-           // }
-        }
 	}
 }

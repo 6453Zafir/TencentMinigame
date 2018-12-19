@@ -6,9 +6,10 @@ public class BGController : MonoBehaviour {
     /// <summary>
     /// 每张背景图的宽度*3
     /// </summary>
-    private float total_length = 86.4f;
-	// Use this for initialization
-	void Start () {
+    private float total_length = 86.25f;
+    public Material NormalMat, CaveMat;
+    // Use this for initialization
+    void Start () {
         Vector3 bgPosition = this.transform.position;
         Vector3 cameraPosition = Camera.main.transform.position; // mainCamera是相机的位置
         bgPosition.y = Camera.main.transform.position.y;
@@ -31,6 +32,16 @@ public class BGController : MonoBehaviour {
             bgPosition.x -= total_length;
             bgPosition.y = Camera.main.transform.position.y + 2;
             this.transform.position = bgPosition;
+        }
+
+
+        if (transform.position.x < 343f || transform.position.x > 429f)
+        {
+            GetComponent<SpriteRenderer>().material = NormalMat;
+        }
+        else {
+            GetComponent<SpriteRenderer>().material = CaveMat;
+
         }
     }
 }

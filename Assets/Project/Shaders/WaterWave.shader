@@ -49,9 +49,9 @@
 			Fog{ Mode off }
 
 			CGPROGRAM
-#pragma vertex vert_img
-#pragma fragment frag
-#pragma fragmentoption ARB_precision_hint_fastest 
+			#pragma vertex vert_img
+			#pragma fragment frag
+			#pragma fragmentoption ARB_precision_hint_fastest 
 			ENDCG
 		}
 	}

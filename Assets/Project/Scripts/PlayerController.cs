@@ -17,7 +17,6 @@ public class PlayerController : MonoBehaviour {
     public static bool wind_count = false;//风力开始生效，开始计时
     public static float begin_time=0.0f;
     public GameObject Draw_blue;
-
     public Material NormalMat, CaveMat;
     // Use this for initialization
 

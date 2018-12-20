@@ -4,7 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - RollingBg
   - ground
+  - Tree
+  - UpStone
+  - FirePoints
+  - Rope
   layers:
   - Default
   - TransparentFX
@@ -14,7 +19,7 @@ TagManager:
   - UI
   - 
   - 
-  - CamreaIngnore
+  - 
   - 
   - 
   - 
@@ -42,21 +47,21 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: PaperBG
-    uniqueID: 3297825695
+  - name: RollingBg
+    uniqueID: 2265690325
     locked: 0
   - name: Far
-    uniqueID: 773253493
+    uniqueID: 427941313
     locked: 0
-  - name: FarMiddle
-    uniqueID: 1635818453
+  - name: MiddleFar
+    uniqueID: 3288537597
     locked: 0
   - name: Middle
-    uniqueID: 2178676849
+    uniqueID: 4260592055
     locked: 0
   - name: Player
-    uniqueID: 1388878485
+    uniqueID: 26511963
     locked: 0
   - name: Near
-    uniqueID: 2281463709
+    uniqueID: 503547989
     locked: 0

@@ -26,6 +26,10 @@ public class PlayerController : MonoBehaviour {
     public GameObject Draw_blue;
     public Material NormalMat, CaveMat;
     // Use this for initialization
+    private Animator characterAnimator;//人物动画机
+
+    private Vector2 touchPosition;  //触摸点坐标
+    private float screenWeight; //屏幕宽度
 
     void Start () {
         rig = GetComponent<Rigidbody2D>();
@@ -36,11 +40,60 @@ public class PlayerController : MonoBehaviour {
         can_draw_red = false;
         can_draw_black = false;
         //begin_count = false;
-	}
+        touchPosition = new Vector2();
+        screenWeight = Screen.width;
+        characterAnimator = GetComponent<Animator>();
+    }
 	
 	// Update is called once per frame
 	void Update ()
     {
+        //人物动画
+        if (rig.velocity.x != 0)
+        {
+            characterAnimator.SetBool("isMoving", true);  //人物速度不为零，设置变量，播放走路动画
+            Debug.Log(rig.velocity.x);
+        }
+        else
+        {
+            characterAnimator.SetBool("isMoving", false);
+        }
+
+        //触摸屏幕控制左右移动
+        if (Input.touchCount > 0)
+        {
+            for (int i = 0; i < Input.touchCount; i++)
+            {
+                Touch touch = Input.touches[i];
+                //没有移动/滑动
+                if (touch.phase == TouchPhase.Stationary || touch.phase == TouchPhase.Moved)
+                {
+                    touchPosition = touch.position;
+                    //对比屏幕坐标
+                    if (touchPosition.x > screenWeight/2)
+                    {
+                        rig.velocity = new Vector2(speed, rig.velocity.y);
+                    }
+                    else if (touchPosition.x < screenWeight/2)
+                    {
+                        rig.velocity = new Vector2(-speed, rig.velocity.y);
+                    }
+
+                    /*对比人物坐标
+                    if (touchPosition.x > this.transform.position.x + 0.1f)
+                    {
+                        rig.velocity = new Vector2(speed, rig.velocity.y);
+                    }
+                    else if (touchPosition.x < this.transform.position.x - 0.1f)
+                    {
+                        rig.velocity = new Vector2(-speed, rig.velocity.y);
+                    }
+                    */
+                }
+            }
+        }
+        //Debug.Log(Input.touchCount);
+
         if (transform.position.x > 346f && transform.position.x < 494.31f)
         {
             GetComponent<SpriteRenderer>().material = CaveMat;
@@ -53,6 +106,8 @@ public class PlayerController : MonoBehaviour {
     void FixedUpdate()
     {
         
+        
+
         if (Input.GetKey(KeyCode.A))
         {
             rig.velocity = new Vector2(-speed,rig.velocity.y);      

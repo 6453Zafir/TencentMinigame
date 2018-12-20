@@ -48,6 +48,22 @@ namespace UnityStandardAssets._2D
                         {
                             pos = GameObject.Find("/CheckPoints/CP1-5").transform.position;
                         }
+                        if (player.transform.position.x > 277)
+                        {
+                            pos = GameObject.Find("/CheckPoints/CP1-6").transform.position;
+                        }
+                        if (player.transform.position.x > 322)
+                        {
+                            pos = GameObject.Find("/CheckPoints/CP1-7").transform.position;
+                        }
+                        if (player.transform.position.x > 415)
+                        {
+                            pos = GameObject.Find("/CheckPoints/CP1-8").transform.position;
+                        }
+                        if (player.transform.position.x > 462)
+                        {
+                            pos = GameObject.Find("/CheckPoints/CP1-9").transform.position;
+                        }
                         break;
                     }    
                 case 1:

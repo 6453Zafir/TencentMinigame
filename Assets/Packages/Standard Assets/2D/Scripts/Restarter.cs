@@ -16,8 +16,17 @@ namespace UnityStandardAssets._2D
         {
             if (other.tag == "Player")
             {
-                player.transform.position = GetNewestCheckPoint();
-               // SceneManager.LoadScene(SceneManager.GetSceneAt(0).name);
+                if (gameObject.name == "KillzoneWater")
+                {
+
+                    PlayerController.DeadType = 2;
+                }
+                else {
+
+                    PlayerController.DeadType = 1;
+                }
+                
+              //  player.transform.position = GetNewestCheckPoint();
             }
         }
 

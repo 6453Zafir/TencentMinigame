@@ -10,6 +10,13 @@ public class PlayerController : MonoBehaviour {
    // private Vector2 previous_v = Vector2.zero;
     private int face;//记录朝向
     private Vector2 wind_direction = Vector2.zero;//风向的单位向量
+    /// <summary>
+    /// 0：未死亡
+    /// 1：摔死
+    /// 2：淹死
+    /// 3：烧死
+    /// </summary>
+    public static int DeadType = 0;
     public static bool can_draw_blue;//是否青画笔
     public static bool can_draw_red;//是否用红画笔
     public static bool can_draw_black;//是否用黑色画笔
@@ -34,7 +41,7 @@ public class PlayerController : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        if (transform.position.x > 346f && transform.position.x < 428.2f)
+        if (transform.position.x > 346f && transform.position.x < 494.31f)
         {
             GetComponent<SpriteRenderer>().material = CaveMat;
         }

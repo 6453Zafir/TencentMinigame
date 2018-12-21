@@ -10,6 +10,7 @@ TagManager:
   - UpStone
   - FirePoints
   - Rope
+  - Fire
   layers:
   - Default
   - TransparentFX

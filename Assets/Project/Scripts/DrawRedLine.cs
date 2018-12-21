@@ -344,7 +344,7 @@ public class DrawRedLine : MonoBehaviour {
 
     }
 
-    private void DeleteLine()
+    public void DeleteLine()
     {
         DelRedLine_num = GameController.RedLine_num;
         GameController.RedLine_num = GameController.RedLine_numzero;

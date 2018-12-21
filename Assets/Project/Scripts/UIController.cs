@@ -126,8 +126,12 @@ public class UIController : MonoBehaviour {
 
     public void ReCycle()
     {
-          DrawLine2D DrawBlack = GameObject.Find("Draw_Line_black").GetComponent<DrawLine2D>();
-          DrawBlack.ReGainBlackInk();
+        DrawLine2D DrawBlack = GameObject.Find("Draw_Line_black").GetComponent<DrawLine2D>();
+        DrawBlack.ReGainBlackInk();
+        DrawBlueLine DrawBlue = GameObject.Find("Draw_Line_blue").GetComponent<DrawBlueLine>();
+        DrawBlue.DeleteLine();
+        DrawRedLine DrawRed = GameObject.Find("Draw_Line_red").GetComponent<DrawRedLine>();
+        DrawRed.DeleteLine();
     }
     public void EnsurePainting() {
         GameController.isInPaintMode = false;

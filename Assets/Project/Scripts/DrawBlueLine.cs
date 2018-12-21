@@ -303,7 +303,7 @@ public class DrawBlueLine: MonoBehaviour
         m_LineRenderer.useWorldSpace = true;  //The points are considered as world space coordinates
     }
 
-    private void DeleteLine()
+    public void DeleteLine()
     {
         int DelBlueLine_num = GameController.BlueLine_num;
         GameController.BlueLine_num = GameController.BlueLine_numzero;

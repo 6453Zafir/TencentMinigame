@@ -35,7 +35,7 @@ public class BGController : MonoBehaviour {
         }
 
 
-        if (transform.position.x < 343f || transform.position.x > 429f)
+        if (transform.position.x < 343f || transform.position.x > 494.31f)
         {
             GetComponent<SpriteRenderer>().material = NormalMat;
         }

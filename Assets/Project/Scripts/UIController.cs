@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class UIController : MonoBehaviour {
-    public GameObject EnsureButton,WindButton,FireButton,DeadInk,DeadText, HideDeadUIBtn;
+    public GameObject EnsureButton,WindButton,FireButton,DeadInk,DeadText, HideDeadUIBtn,Helper;
     private Material InkMelt;
     private bool isDeadUIShowing = false;
     private Text currentShowingText;
@@ -172,6 +172,21 @@ public class UIController : MonoBehaviour {
     public void HideDeadUI() {
         isDeadUIShowing = true;
        StartCoroutine(Changestate(1.5f));
+    }
+
+
+
+    public void ToggleHelp()
+    {
+        if (Helper.activeInHierarchy) {
+            Helper.SetActive(false);
+            //禁用相机跟随，画笔和人物控制
+        }
+        else
+        {
+            Helper.SetActive(true);
+            //开启相机跟随，画笔和人物控制
+        }
     }
 
     IEnumerator Changestate(float waitime)

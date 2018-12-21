@@ -44,6 +44,7 @@ public class UIController : MonoBehaviour {
                 currentShowingText = getDeadTextFromPlayerState();
                 StartCoroutine(showText(currentShowingText, 10f));
                 StartCoroutine(EnDisableRestartButton(true, 0.5f));
+                DeadUI.SetActive(true);
             }
             else
             {
@@ -52,7 +53,9 @@ public class UIController : MonoBehaviour {
                 player = GameObject.FindGameObjectWithTag("Player").gameObject;
                 player.transform.position = GetNewestCheckPoint();
                 currentShowingText.color = transColor;
+                
             }
+            DeadUI.SetActive(true);
         }
         if (PlayerController.DeadType == 3)
         {
@@ -69,15 +72,7 @@ public class UIController : MonoBehaviour {
                 StartCoroutine(EnDisableRestartButton(false, 0.1f));
                 currentShowingText.color = transColor;
             }
-        }
-        if (PlayerController.DeadType > 0)
-        {
             DeadUI.SetActive(true);
-        }
-        else {
-            if (DeadUI.activeInHierarchy) {
-                StartCoroutine(DisableDeadUI(false, 0.5f));
-            }
         }
 
         print("黑" + DrawLine2D.can_draw_black+"蓝"+
@@ -141,10 +136,6 @@ public class UIController : MonoBehaviour {
         DrawRedLine DrawRed = GameObject.Find("Draw_Line_red").GetComponent<DrawRedLine>();
         DrawRed.DeleteLine();
     }
-    public void EnsurePainting() {
-        GameController.isInPaintMode = false;
-        endDraw();
-    }
 
     private void startDraw(int InkNum) {
         ///在此激活画笔工具
@@ -152,20 +143,9 @@ public class UIController : MonoBehaviour {
         ///禁用人物控制
         PlayerController pcon = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         pcon.startDraw(InkNum);
-        Debug.Log("start draw");
     }
-    private void endDraw()
-    {
-        ///在此禁用画笔工具
-        ///开启人物控制
-        ///隐藏确认作画按钮
-        Debug.Log("end draw");
-        
-    }
+    
 
-    public void setText( Text textToSet, string text){
-        textToSet.text = text;
-    }
 
     public void showUIButton(int inkNum) {
         if (inkNum == 1)
@@ -217,6 +197,7 @@ public class UIController : MonoBehaviour {
         yield return new WaitForSeconds(waitime);
         isDeadUIShowing = false;
         PlayerController.DeadType = 0;
+        DeadUI.SetActive(false);
     }
 
     private Text getDeadTextFromPlayerState() {

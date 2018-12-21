@@ -7,8 +7,7 @@ public class GameController : MonoBehaviour {
     public static int LevelNum = 0;
     public static int InkNum = 0;
     public static int TotalInk = 30;
-
-
+    
 
     public static bool isWindGet = false, isFireGet = false;
     private bool isWindGetSet = false, isFireGetSet = false;
@@ -56,6 +55,9 @@ public class GameController : MonoBehaviour {
             isFireGet = true;
             isFireGetSet = true;
         }
+        if (Time.time > 5&& GameObject.Find("BeginVideo")!=null) {
             
+            GameObject.Find("BeginVideo").gameObject.SetActive(false);
+        }    
 	}
 }

@@ -14,8 +14,8 @@ public class GameController : MonoBehaviour {
     private bool isWindGetSet = false, isFireGetSet = false;
 
     public static bool isInPaintMode = false;
-    public static float InkDistance = 30.0f;
-    public static float InkTotalDistance = 30.0f;
+    public static float InkDistance = 20.0f;
+    public static float InkTotalDistance = 20.0f;
     //黑色画笔控制
     public static int BlackLine_numzero = 0;
     public static int BlackLine_num = 0;

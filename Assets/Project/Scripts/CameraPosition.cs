@@ -10,7 +10,7 @@ public class CameraPosition : MonoBehaviour {
     //public float moveSpeed;//人物到达边框后相机跟随速度
     public GameObject player;
 
-    public float smoothTime = 0.6f;  //Smooth Time
+    public float smoothTime = 5f;  //Smooth Time
     private Vector2 velocity = new Vector2(2,2);       //Velocity
                                     // Use this for initialization
     void Start () {

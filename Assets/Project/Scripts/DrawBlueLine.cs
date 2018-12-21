@@ -10,6 +10,7 @@ public class DrawBlueLine: MonoBehaviour
     private float limit = 6.2f;//青色的线不能超过560像素
 
     public static bool can_draw_blue;//是否青画笔
+    public static bool is_draw_blue;//是否作画
     private float begin_time;
     public ParticleSystem m_particle;
     public static List<Vector2> m_Points;//line的点
@@ -125,11 +126,22 @@ public class DrawBlueLine: MonoBehaviour
         {//计时时不允许画画
             return;
         }
+
+        if (can_draw_blue)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                is_draw_blue = true;
+            }
+        }
+
+
         if (!can_draw_blue) return;
 
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0)&& is_draw_blue)
         {
             can_draw_blue = false;
+            is_draw_blue = false;
             PlayerController.wind_count = true;//风生效
             begin_time = Time.time;//风生效的开始时间
 

@@ -120,6 +120,7 @@ public class PlayerController : MonoBehaviour {
         }
         //Debug.Log(Input.touchCount);
 
+        //人物进山洞的材质改变
         if (transform.position.x > 346f && transform.position.x < 494.31f)
         {
             GetComponent<SpriteRenderer>().material = CaveMat;
@@ -131,8 +132,6 @@ public class PlayerController : MonoBehaviour {
 
     void FixedUpdate()
     {
-
-
         if (isPainting == false)
         {
             if (Input.GetKey(KeyCode.A))
@@ -144,32 +143,65 @@ public class PlayerController : MonoBehaviour {
                 rig.velocity = new Vector2(speed, rig.velocity.y);
             }
         }
-        if (Input.GetKeyDown(KeyCode.E))
-        {//进入青色画笔
-            DrawBlueLine.can_draw_blue = !DrawBlueLine.can_draw_blue;
-            DrawRedLine.can_draw_red = false;
-            DrawLine2D.can_draw_black = false;         
-            wind_count = false;
+        //if (Input.GetKeyDown(KeyCode.E))
+        //{//进入青色画笔
+        //    DrawBlueLine.can_draw_blue = !DrawBlueLine.can_draw_blue;
+        //    DrawRedLine.can_draw_red = false;
+        //    DrawLine2D.can_draw_black = false;
+        //    wind_count = false;
 
-        }
-        else if (Input.GetKeyDown(KeyCode.T))
-        {//进入红画笔
-            DrawRedLine.can_draw_red = !DrawRedLine.can_draw_red;
-            DrawLine2D.can_draw_black = false;
-            DrawBlueLine.can_draw_blue = false;           
-            fire_count = false;           
-        }
-        else if (Input.GetKeyDown(KeyCode.Y))
-        {//进入黑画笔
-            DrawLine2D.can_draw_black =!DrawLine2D.can_draw_black;
-            DrawBlueLine.can_draw_blue = false;
-            DrawRedLine.can_draw_red = false;           
-        }
+        //}
+        //else if (Input.GetKeyDown(KeyCode.T))
+        //{//进入红画笔
+        //    DrawRedLine.can_draw_red = !DrawRedLine.can_draw_red;
+        //    DrawLine2D.can_draw_black = false;
+        //    DrawBlueLine.can_draw_blue = false;
+        //    fire_count = false;
+        //}
+        //else if (Input.GetKeyDown(KeyCode.Y))
+        //{//进入黑画笔
+        //    DrawLine2D.can_draw_black = !DrawLine2D.can_draw_black;
+        //    DrawBlueLine.can_draw_blue = false;
+        //    DrawRedLine.can_draw_red = false;
+        //}
+        //else {
+
+        //}
         if (rig.velocity.x < 0)
             this.transform.localEulerAngles = new Vector3(this.transform.localEulerAngles.x,180,this.transform.localEulerAngles.z);
         else if (rig.velocity.x > 0)
             this.transform.localEulerAngles = new Vector3(this.transform.localEulerAngles.x,0, this.transform.localEulerAngles.z);
     }
+
+
+    public void startDraw(int InkNum) {
+        switch (InkNum) {
+            case 0:
+                //black
+                DrawLine2D.can_draw_black = !DrawLine2D.can_draw_black;
+                DrawBlueLine.can_draw_blue = false;
+                DrawRedLine.can_draw_red = false;
+                break;
+            case 1:
+                //blue
+                DrawBlueLine.can_draw_blue = !DrawBlueLine.can_draw_blue;
+                DrawRedLine.can_draw_red = false;
+                DrawLine2D.can_draw_black = false;
+                wind_count = false;
+                break;
+            case 2:
+                //red
+                DrawRedLine.can_draw_red = !DrawRedLine.can_draw_red;
+                DrawLine2D.can_draw_black = false;
+                DrawBlueLine.can_draw_blue = false;
+                fire_count = false;
+                break;
+            default:
+                break;
+        }
+
+    }
+
     private void OnTriggerStay2D(Collider2D other)
     {
         Debug.Log("烧到我了，下面的代码跟我没关系");

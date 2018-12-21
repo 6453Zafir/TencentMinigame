@@ -17,6 +17,8 @@ public class DrawRedLine : MonoBehaviour {
 
     private float limit = 6.2f;
     public static bool can_draw_red;//是否用红画笔
+    public static bool is_draw_red;//是否作画
+
     private float begin_time;
     protected List<Vector2> m_Points;
     protected List<List<Vector2>> pos;
@@ -146,11 +148,17 @@ public class DrawRedLine : MonoBehaviour {
 
         if (!can_draw_red) return;
 
-       
+        if (can_draw_red) {
+            if (Input.GetMouseButtonDown(0))
+            {
+                is_draw_red = true;
+            }
+        }
 
-        if(Input.GetMouseButtonUp(0))
+        if(Input.GetMouseButtonUp(0)&&is_draw_red)
         {
             can_draw_red = false;
+            is_draw_red = false;
             PlayerController.fire_count = true;//火生效
             begin_time = Time.time;//火生效的开始时间
             GameController.RedLine_num += 1;    //已画线条数加一

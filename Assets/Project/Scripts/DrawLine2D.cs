@@ -15,6 +15,7 @@ public class DrawLine2D : MonoBehaviour
     protected Camera m_Camera;
     [SerializeField]
     public static  bool can_draw_black;//是否用黑色画笔
+    public static  bool is_draw_black;//是否作画
     protected List<Vector2> m_Points;
 
     private Vector2 buffer = Vector2.zero;
@@ -130,11 +131,21 @@ public class DrawLine2D : MonoBehaviour
 
         }
         if (HadDrawDistance >= limit) return;
-        if (Input.GetMouseButtonUp(0))
+
+        if (can_draw_black) {
+            if (Input.GetMouseButtonDown(0))
+            {
+                is_draw_black = true;
+            }
+        }
+
+        if (Input.GetMouseButtonUp(0)&&is_draw_black)
         {
             can_draw_black = false;
+            is_draw_black = false;
         }
         if (!can_draw_black) return;
+
         if (Input.GetMouseButtonDown(0) && GameController.InkDistance > 0)//判定是否是画的一条新线
         {         
             buffer = Vector2.zero;                //初始化上一画点
@@ -185,8 +196,6 @@ public class DrawLine2D : MonoBehaviour
                 //当剩余墨量大于需要画出的线段,并且不会超过850像素
                 if (!m_Points.Contains(mousePosition) && (GameController.InkDistance - blackdistance) >= 0 && (blackdistance+HadDrawDistance)<limit)
                 {
-
-                    Debug.Log("111");
                     GameController.InkDistance = GameController.InkDistance - blackdistance;
                     HadDrawDistance += blackdistance;
                     m_Points.Add(mousePosition);
@@ -199,7 +208,6 @@ public class DrawLine2D : MonoBehaviour
                 }
                 else if (!m_Points.Contains(mousePosition) && (GameController.InkDistance - blackdistance) >= 0 && (blackdistance + HadDrawDistance) >= limit)//墨水够，但是已超出850像素
                 {
-                    Debug.Log("222");
                     V = offset.normalized;
                     end = buffer + V * (limit-HadDrawDistance);
                     HadDrawDistance += (limit - HadDrawDistance);
@@ -281,4 +289,9 @@ public class DrawLine2D : MonoBehaviour
         m_EdgeCollider2D = gameObject.AddComponent<EdgeCollider2D>();
     }
 
+
+    public void ReGainBlackInk() {
+        DelBlackLine_num = GameController.BlackLine_num;
+        GameController.BlackLine_num = GameController.BlackLine_numzero;
+    }
 }

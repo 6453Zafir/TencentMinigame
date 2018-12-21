@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class UIController : MonoBehaviour {
-    public GameObject EnsureButton,WindButton,FireButton,DeadInk,DeadText, HideDeadUIBtn,Helper;
+    public GameObject WindButton,FireButton,DeadInk,DeadText, HideDeadUIBtn,Helper;
+    public Sprite PauseSprite, CloseSprite;
     private Material InkMelt;
     private bool isDeadUIShowing = false;
     private Text currentShowingText;
@@ -33,7 +34,6 @@ public class UIController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        print("当前余墨：" + GameController.InkDistance);
         InkMelt.SetFloat("_Threshold", 1- GameController.InkDistance / GameController.InkTotalDistance);
 
         if (PlayerController.DeadType ==1|| PlayerController.DeadType == 2)
@@ -70,11 +70,21 @@ public class UIController : MonoBehaviour {
                 currentShowingText.color = transColor;
             }
         }
+
+
+        print("黑" + DrawLine2D.can_draw_black+"蓝"+
+        DrawBlueLine.can_draw_blue+"红"+
+        DrawRedLine.can_draw_red);
     }
 
 
     public void InkButton(GameObject ob) {
-
+        if (ob.name == "MiddleButton")
+        {
+            startDraw(CurrentBrushColor);
+        }
+        else {
+            //将点击的鱼颜色为中间的颜色
             switch (CurrentBrushColor)
             {
                 case 0:
@@ -89,8 +99,7 @@ public class UIController : MonoBehaviour {
                 default:
                     break;
             }
-
-
+           //将中间的颜色换为被点击的鱼的颜色
             switch (ob.GetComponent<InkButton>().ColorNum)
             {
                 case 0:
@@ -105,35 +114,32 @@ public class UIController : MonoBehaviour {
                 default:
                     break;
             }
+
             int temp = ob.GetComponent<InkButton>().ColorNum;
+            startDraw(temp);
             ob.GetComponent<InkButton>().ColorNum = CurrentBrushColor;
             CurrentBrushColor = temp;
-            GameController.isInPaintMode = true;
-            startDraw();
+        }
+        
     }
+
+
     public void ReCycle()
     {
-        if (GameController.isInPaintMode)
-        {
-            /// 回收墨水
-            Debug.Log("ink recycled");
-            print("ink recycled");
-        }
-        else {
-            startDraw();
-            GameController.isInPaintMode = true;
-        }
+          DrawLine2D DrawBlack = GameObject.Find("Draw_Line_black").GetComponent<DrawLine2D>();
+          DrawBlack.ReGainBlackInk();
     }
     public void EnsurePainting() {
         GameController.isInPaintMode = false;
         endDraw();
     }
 
-    private void startDraw() {
+    private void startDraw(int InkNum) {
         ///在此激活画笔工具
         ///显示确认按钮
         ///禁用人物控制
-        EnsureButton.SetActive(true);
+        PlayerController pcon = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        pcon.startDraw(InkNum);
         Debug.Log("start draw");
     }
     private void endDraw()
@@ -142,8 +148,7 @@ public class UIController : MonoBehaviour {
         ///开启人物控制
         ///隐藏确认作画按钮
         Debug.Log("end draw");
-
-        EnsureButton.SetActive(false);
+        
     }
 
     public void setText( Text textToSet, string text){
@@ -174,18 +179,20 @@ public class UIController : MonoBehaviour {
        StartCoroutine(Changestate(1.5f));
     }
 
-
-
-    public void ToggleHelp()
+    public void ToggleHelp(GameObject go)
     {
         if (Helper.activeInHierarchy) {
             Helper.SetActive(false);
-            //禁用相机跟随，画笔和人物控制
+            go.GetComponent<Image>().sprite = PauseSprite;
+
+            //开启相机跟随，画笔和人物控制
         }
         else
         {
+            go.GetComponent<Image>().sprite = CloseSprite;
+
             Helper.SetActive(true);
-            //开启相机跟随，画笔和人物控制
+            //禁用相机跟随，画笔和人物控制
         }
     }
 

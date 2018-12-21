@@ -14,18 +14,18 @@ public class DrawLine2D : MonoBehaviour
     [SerializeField]
     protected Camera m_Camera;
     [SerializeField]
-
+    public static  bool can_draw_black;//是否用黑色画笔
     protected List<Vector2> m_Points;
-    protected List<List<Vector2>> pos;
+
     private Vector2 buffer = Vector2.zero;
     private Vector2 now = Vector2.zero;
     private Vector2 end = Vector2.zero;
     private Vector2 V = Vector2.zero;
-
+    private float limit = 10.0f;
     public GameObject m_line;
     //鼠标前后点的距离
     private float blackdistance;
-
+    private float HadDrawDistance = 0.0f;
     private int DelBlackLine_num = 0;
 
     public Material m_material;
@@ -79,6 +79,7 @@ public class DrawLine2D : MonoBehaviour
     //Debug info
     protected virtual void Awake()
     {
+        can_draw_black = false;
         buffer = Vector2.zero;
         now = Vector2.zero;
         if (m_LineRenderer == null)
@@ -99,13 +100,13 @@ public class DrawLine2D : MonoBehaviour
             m_Camera = Camera.main;
         }
         m_Points = new List<Vector2>();
-        pos = new List<List<Vector2>>();//对线的初始化
+        
     }
 
     //Get the mouseButtonDown position
     protected virtual void Update()
     {
-
+       
         //按Q键添加需要回收的黑色墨水
         if (Input.GetKeyDown(KeyCode.Q))
         {
@@ -119,16 +120,26 @@ public class DrawLine2D : MonoBehaviour
             var draw = GameObject.Find("BlackDraw");
             Destroy(draw);
             DelBlackLine_num -= 1;
-            GameController.BlackDistance = GameController.BlackTotalDistance;
-        }
+            if (DelBlackLine_num == 0)
+            {
+                GameController.InkDistance += HadDrawDistance;
+                HadDrawDistance = 0;
+                
+            }
+            
 
-        if (Input.GetMouseButtonDown(0) && GameController.BlackDistance > 0)//判定是否是画的一条新线
+        }
+        if (HadDrawDistance >= limit) return;
+        if (Input.GetMouseButtonUp(0))
         {
-            if (!PlayerController.can_draw_black) return;
+            can_draw_black = false;
+        }
+        if (!can_draw_black) return;
+        if (Input.GetMouseButtonDown(0) && GameController.InkDistance > 0)//判定是否是画的一条新线
+        {         
             buffer = Vector2.zero;                //初始化上一画点
             now = Vector2.zero;                   //初始化现在画点
-            m_Points = new List<Vector2>();       //初始化一条新线
-            pos.Add(m_Points);                    //添加到线的数组
+            m_Points = new List<Vector2>();       //初始化一条新线          
             GameController.BlackLine_num += 1;    //已画线条数加一
             m_line = new GameObject("BlackDraw");      //创建新的物体作为画线
             m_LineRenderer = m_line.AddComponent<LineRenderer>();
@@ -138,15 +149,14 @@ public class DrawLine2D : MonoBehaviour
             m_LineRenderer.material = m_material;      //Line material
             m_LineRenderer.startColor = Color.white;        //The color of startpoint
             m_LineRenderer.endColor = Color.white;         //The color of endpoint
-            m_LineRenderer.startWidth = 0.6f; //The width of startpoint
-            m_LineRenderer.endWidth = 0.6f;   //The width of endpoint
+            m_LineRenderer.startWidth = 0.4f; //The width of startpoint
+            m_LineRenderer.endWidth = 0.4f;   //The width of endpoint
             m_LineRenderer.useWorldSpace = true;  //The points are considered as world space coordinates
 
 
         }
-        else if (Input.GetMouseButton(0) && GameController.BlackDistance > 0)
+        else if (Input.GetMouseButton(0) && GameController.InkDistance > 0 )
         {
-            if (!PlayerController.can_draw_black) return;
             Vector2 mousePosition = m_Camera.ScreenToWorldPoint(Input.mousePosition);
             //如果刚开始画，对上一次鼠标位置做储存
             if (buffer == Vector2.zero)
@@ -172,12 +182,13 @@ public class DrawLine2D : MonoBehaviour
                 //计算两点之间距离
                 Vector2 offset = now - buffer;
                 blackdistance = offset.magnitude;
-                //当剩余墨量大于需要画出的线段
-                if (!m_Points.Contains(mousePosition) && (GameController.BlackDistance - blackdistance) >= 0)
+                //当剩余墨量大于需要画出的线段,并且不会超过850像素
+                if (!m_Points.Contains(mousePosition) && (GameController.InkDistance - blackdistance) >= 0 && (blackdistance+HadDrawDistance)<limit)
                 {
 
-
-                    GameController.BlackDistance = GameController.BlackDistance - blackdistance;
+                    Debug.Log("111");
+                    GameController.InkDistance = GameController.InkDistance - blackdistance;
+                    HadDrawDistance += blackdistance;
                     m_Points.Add(mousePosition);
                     m_LineRenderer.positionCount = m_Points.Count;
                     m_LineRenderer.SetPosition(m_LineRenderer.positionCount - 1, mousePosition);
@@ -186,11 +197,13 @@ public class DrawLine2D : MonoBehaviour
                         m_EdgeCollider2D.points = m_Points.ToArray();
                     }
                 }
-                //当剩余墨量小于需要画出的线段
-                else if (!m_Points.Contains(mousePosition) && (GameController.BlackDistance - blackdistance) < 0)
+                else if (!m_Points.Contains(mousePosition) && (GameController.InkDistance - blackdistance) >= 0 && (blackdistance + HadDrawDistance) >= limit)//墨水够，但是已超出850像素
                 {
+                    Debug.Log("222");
                     V = offset.normalized;
-                    end = buffer + V * GameController.BlackDistance;
+                    end = buffer + V * (limit-HadDrawDistance);
+                    HadDrawDistance += (limit - HadDrawDistance);
+                    Debug.Log(HadDrawDistance+"haddraw");
                     m_Points.Add(end);
                     m_LineRenderer.positionCount = m_Points.Count;
                     m_LineRenderer.SetPosition(m_LineRenderer.positionCount - 1, end);
@@ -198,11 +211,49 @@ public class DrawLine2D : MonoBehaviour
                     {
                         m_EdgeCollider2D.points = m_Points.ToArray();
                     }
-                    GameController.BlackDistance = 0;
+                    GameController.InkDistance -= (limit - HadDrawDistance);
                 }
+                //当剩余墨量小于需要画出的线段
+                else if (!m_Points.Contains(mousePosition) && (GameController.InkDistance - blackdistance) < 0)
+                {
+                   
+                    float NowCanDraw = limit - HadDrawDistance;
+                    if ( NowCanDraw > GameController.InkDistance)
+                    {
+                        Debug.Log("333");
+                        V = offset.normalized;
+                        end = buffer + V * GameController.InkDistance;
+                        HadDrawDistance += GameController.InkDistance;
+                        m_Points.Add(end);
+                        m_LineRenderer.positionCount = m_Points.Count;
+                        m_LineRenderer.SetPosition(m_LineRenderer.positionCount - 1, end);
+                        if (m_EdgeCollider2D != null && m_AddCollider && m_Points.Count > 1)
+                        {
+                            m_EdgeCollider2D.points = m_Points.ToArray();
+                        }
+                        GameController.InkDistance = 0;
+                    }
+                    else
+                    {
+                        Debug.Log("444");
+                        V = offset.normalized;
+                        end = buffer + V * NowCanDraw;
+                        HadDrawDistance += NowCanDraw;
+                        m_Points.Add(end);
+                        m_LineRenderer.positionCount = m_Points.Count;
+                        m_LineRenderer.SetPosition(m_LineRenderer.positionCount - 1, end);
+                        if (m_EdgeCollider2D != null && m_AddCollider && m_Points.Count > 1)
+                        {
+                            m_EdgeCollider2D.points = m_Points.ToArray();
+                        }
+                        GameController.InkDistance -= NowCanDraw;
+                    }
+
+                }
+                
                 buffer = now;
 
-                //Debug.Log(GameController.BlackDistance);
+                
             }
 
         }
@@ -210,22 +261,6 @@ public class DrawLine2D : MonoBehaviour
 
     }
 
-    protected virtual void Reset()
-    {
-        if (m_LineRenderer != null)
-        {
-            m_LineRenderer.positionCount = 0;
-        }
-        if (m_Points != null)
-        {
-            m_Points.Clear();
-        }
-        if (m_EdgeCollider2D != null && m_AddCollider)
-        {
-            m_EdgeCollider2D.Reset();
-        }
-        GameController.BlackDistance = GameController.BlackTotalDistance;
-    }
 
     protected virtual void CreateDefaultLineRenderer()
     {
@@ -236,8 +271,8 @@ public class DrawLine2D : MonoBehaviour
         m_LineRenderer.material = m_material;      //Line material
         m_LineRenderer.startColor = Color.white;        //The color of startpoint
         m_LineRenderer.endColor = Color.white;         //The color of endpoint
-        m_LineRenderer.startWidth = 0.6f; //The width of startpoint
-        m_LineRenderer.endWidth = 0.6f;   //The width of endpoint
+        m_LineRenderer.startWidth = 0.4f; //The width of startpoint
+        m_LineRenderer.endWidth = 0.4f;   //The width of endpoint
         m_LineRenderer.useWorldSpace = true;  //The points are considered as world space coordinates
     }
 

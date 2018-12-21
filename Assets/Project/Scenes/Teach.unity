@@ -1641,6 +1641,7 @@ MonoBehaviour:
   Draw_blue: {fileID: 0}
   NormalMat: {fileID: 2100000, guid: 26b752ec7d41f5b41a1bdcd7d3e6d6e0, type: 2}
   CaveMat: {fileID: 2100000, guid: 7556f34fd10e31246bf2bf3fcaf6db36, type: 2}
+  forceDuration: 1
 --- !u!114 &226945847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15575,7 +15576,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6246f4dfc46dd964f9f3f2e13f026f8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_particle: {fileID: 1643206627}
+  duration: 5
+  m_particle: {fileID: 0}
+  m_material: {fileID: 0}
   m_LineRenderer: {fileID: 315835501}
   m_AddCollider: 1
   m_EdgeCollider2D: {fileID: 0}

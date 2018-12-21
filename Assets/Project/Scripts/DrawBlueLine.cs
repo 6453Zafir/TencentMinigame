@@ -114,12 +114,11 @@ public class DrawBlueLine: MonoBehaviour
     {            
         if (PlayerController.wind_count && (Time.time- begin_time)>duration)
         {//风区持续时间到了
-            Debug.Log(GameController.InkDistance);
-            Debug.Log("风区持续时间到了"+ Time.time);
-            PlayerController.wind_count = false;
-            PlayerController.forceReady = false;
+            //Debug.Log(GameController.InkDistance);
+            //Debug.Log("风区持续时间到了"+ Time.time);
+            
             DeleteLine();
-            Debug.Log(HadDrawDistance+"haddraw");
+            //Debug.Log(HadDrawDistance+"haddraw");
             return;
         }
         if(PlayerController.wind_count)
@@ -305,6 +304,8 @@ public class DrawBlueLine: MonoBehaviour
 
     public void DeleteLine()
     {
+        PlayerController.wind_count = false;
+        PlayerController.forceReady = false;
         int DelBlueLine_num = GameController.BlueLine_num;
         GameController.BlueLine_num = GameController.BlueLine_numzero;
         //若有需要回收的墨水则进行回收

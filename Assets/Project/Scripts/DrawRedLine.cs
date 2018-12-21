@@ -5,7 +5,7 @@ using UnityEngine;
 public class DrawRedLine : MonoBehaviour {
 
     private float duration = 1.0f;//持续时间
-
+    private bool delete = false;
     [SerializeField]
     public LineRenderer m_LineRenderer;
     [SerializeField]
@@ -128,19 +128,24 @@ public class DrawRedLine : MonoBehaviour {
     {
 
         if (PlayerController.fire_count && (Time.time - begin_time) > duration)
-        {//火区持续时间到了
-
-            PlayerController.fire_count = false;
+        {//火区持续时间到了      
             DeleteLine();       
             return;
         }
-        if (DelFire_num != 0)
+        if(delete)
         {
-
-            var fire = GameObject.Find("fire");            
-            Destroy(fire);
-            DelFire_num -= 1;
+            if (DelFire_num != 0)
+            {
+                Debug.Log(DelFire_num + "DelFire_num");
+                var fire = GameObject.Find("fire");
+                Destroy(fire);
+                DelFire_num -= 1;
+            }
+            if (DelFire_num == 0) delete = false;
+            return;
         }
+        
+
         if (PlayerController.fire_count)
         {//计时时不允许画画
             return;
@@ -346,6 +351,8 @@ public class DrawRedLine : MonoBehaviour {
 
     public void DeleteLine()
     {
+        Debug.Log("111");
+        PlayerController.fire_count = false;
         DelRedLine_num = GameController.RedLine_num;
         GameController.RedLine_num = GameController.RedLine_numzero;
         DelFire_num = GameController.Fire_num;
@@ -365,10 +372,11 @@ public class DrawRedLine : MonoBehaviour {
                 HadDrawDistance = 0;
                 Debug.Log(GameController.InkDistance+"dfassaf");
             }
-            
+           
         }
-       
+        delete = true;
     }
+
 
     protected virtual void CreateDefaultLineRenderer()
     {

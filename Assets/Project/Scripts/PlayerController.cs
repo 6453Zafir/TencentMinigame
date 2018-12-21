@@ -146,6 +146,11 @@ public class PlayerController : MonoBehaviour {
                 rig.velocity = new Vector2(speed, rig.velocity.y);
             }
         }
+        if (Input.GetKeyDown(KeyCode.E))
+        {//进入青色画笔
+            DrawRedLine DrawBlue = GameObject.Find("Draw_Line_red").GetComponent<DrawRedLine>();
+            DrawBlue.DeleteLine();
+        }
         //if (Input.GetKeyDown(KeyCode.E))
         //{//进入青色画笔
         //    DrawBlueLine.can_draw_blue = !DrawBlueLine.can_draw_blue;

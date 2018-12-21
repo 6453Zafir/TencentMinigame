@@ -14,19 +14,19 @@ public class GameController : MonoBehaviour {
     private bool isWindGetSet = false, isFireGetSet = false;
 
     public static bool isInPaintMode = false;
+    public static float InkDistance = 30.0f;
+    public static float InkTotalDistance = 30.0f;
     //黑色画笔控制
-    public static float BlackDistance = 30;
-    public static float BlackTotalDistance = 30;
     public static int BlackLine_numzero = 0;
     public static int BlackLine_num = 0;
     //红色画笔控制
-    public static float RedDistance = 30;
-    public static float RedTotalDistance = 30;
     public static int RedLine_numzero = 0;
     public static int RedLine_num = 0;
     public static int Fire_num = 0;
     public static int Fire_numzero = 0;
-
+    //蓝色画笔控制
+    public static int BlueLine_numzero = 0;
+    public static int BlueLine_num = 0;
 
     private UIController UICon;
     private GameObject Player;

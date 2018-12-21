@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class UIController : MonoBehaviour {
-    public GameObject WindButton,FireButton,DeadInk,DeadText, HideDeadUIBtn,Helper;
+    public GameObject WindButton,FireButton,DeadUI, DeadInk,DeadText, HideDeadUIBtn,Helper;
     public Sprite PauseSprite, CloseSprite;
     private Material InkMelt;
     private bool isDeadUIShowing = false;
@@ -70,7 +70,15 @@ public class UIController : MonoBehaviour {
                 currentShowingText.color = transColor;
             }
         }
-
+        if (PlayerController.DeadType > 0)
+        {
+            DeadUI.SetActive(true);
+        }
+        else {
+            if (DeadUI.activeInHierarchy) {
+                StartCoroutine(DisableDeadUI(false, 0.5f));
+            }
+        }
 
         print("黑" + DrawLine2D.can_draw_black+"蓝"+
         DrawBlueLine.can_draw_blue+"红"+
@@ -177,7 +185,11 @@ public class UIController : MonoBehaviour {
         HideDeadUIBtn.SetActive(isEnable);
     }
 
-
+    IEnumerator DisableDeadUI(bool isEnable, float waitime)
+    {
+        yield return new WaitForSeconds(waitime);
+        HideDeadUIBtn.SetActive(false);
+    }
     public void HideDeadUI() {
         isDeadUIShowing = true;
        StartCoroutine(Changestate(1.5f));

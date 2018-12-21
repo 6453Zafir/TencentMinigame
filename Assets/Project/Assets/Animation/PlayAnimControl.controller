@@ -196,7 +196,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Painting
-  m_Speed: 0.4
+  m_Speed: 0.2
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101429929985146062}
@@ -283,10 +283,10 @@ AnimatorStateMachine:
     m_Position: {x: 360, y: 0, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102514468925612208}
-    m_Position: {x: 348, y: 228, z: 0}
+    m_Position: {x: 204, y: 240, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102286561563049802}
-    m_Position: {x: 612.2839, y: 130.13943, z: 0}
+    m_Position: {x: 624, y: 456, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []

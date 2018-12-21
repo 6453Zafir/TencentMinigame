@@ -62,6 +62,7 @@ public class PlayerController : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+        isPainting = DrawLine2D.can_draw_black || DrawBlueLine.can_draw_blue || DrawRedLine.can_draw_red;
         //设置人物动画机参数 ，动画机共两个bool参数，一个isMoving(是否走路)，一个isPainting(是否绘画)，绘画动画优先。
         if (rig.velocity.x != 0)
         {
@@ -124,9 +125,11 @@ public class PlayerController : MonoBehaviour {
         if (transform.position.x > 346f && transform.position.x < 494.31f)
         {
             GetComponent<SpriteRenderer>().material = CaveMat;
+            Camera.main.backgroundColor = Color.black;
         }
         else {
             GetComponent<SpriteRenderer>().material = NormalMat;
+            Camera.main.backgroundColor = Color.white;
         }
     }
 

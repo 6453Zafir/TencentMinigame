@@ -25,7 +25,6 @@ public class PlayerController : MonoBehaviour {
     public static float begin_time=0.0f;
     public GameObject Draw_blue;
     public Material NormalMat, CaveMat;
-//=======
 
     private float forceBegin_time;
     public float forceDuration = 1.0f;//力的持续时间
@@ -40,6 +39,13 @@ public class PlayerController : MonoBehaviour {
     //public GameObject Draw_blue;
 //>>>>>>> Stashed changes
     // Use this for initialization
+    private Animator characterAnimator;//人物动画机
+
+    private Vector2 touchPosition;  //触摸点坐标
+    private float screenWeight; //屏幕宽度
+
+    public bool isPainting; //是否正在画
+
 
     void Start () {
         rig = GetComponent<Rigidbody2D>();     
@@ -47,11 +53,73 @@ public class PlayerController : MonoBehaviour {
         forceBegin_time = 0.0f;
 
         //begin_count = false;
+        touchPosition = new Vector2();
+        screenWeight = Screen.width;
+        characterAnimator = GetComponent<Animator>();
+        isPainting = false;
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
+        //设置人物动画机参数 ，动画机共两个bool参数，一个isMoving(是否走路)，一个isPainting(是否绘画)，绘画动画优先。
+        if (rig.velocity.x != 0)
+        {
+            characterAnimator.SetBool("isMoving", true);  //人物速度不为零，设置变量，播放走路动画
+        }
+        else
+        {
+            characterAnimator.SetBool("isMoving", false);
+        }
+
+        //设置人物动画机参数
+        if (isPainting==true)
+        {
+            characterAnimator.SetBool("isPainting", true);  //正在绘画，设置动画机参数
+        }
+        else
+        {
+            characterAnimator.SetBool("isPainting", false);  //不在绘画，设置动画机参数
+        }
+
+        if (isPainting == false)//不在绘画方能移动
+        {
+            //触摸屏幕控制左右移动
+            if (Input.touchCount > 0)
+            {
+                for (int i = 0; i < Input.touchCount; i++)
+                {
+                    Touch touch = Input.touches[i];
+                    //手指触摸但没有移动/滑动
+                    if (touch.phase == TouchPhase.Stationary || touch.phase == TouchPhase.Moved)
+                    {
+                        touchPosition = touch.position;
+                        //对比屏幕坐标进行移动
+                        if (touchPosition.x > screenWeight / 2)
+                        {
+                            rig.velocity = new Vector2(speed, rig.velocity.y);
+                        }
+                        else if (touchPosition.x < screenWeight / 2)
+                        {
+                            rig.velocity = new Vector2(-speed, rig.velocity.y);
+                        }
+
+                        /*对比人物坐标进行移动
+                        if (touchPosition.x > this.transform.position.x + 0.1f)
+                        {
+                            rig.velocity = new Vector2(speed, rig.velocity.y);
+                        }
+                        else if (touchPosition.x < this.transform.position.x - 0.1f)
+                        {
+                            rig.velocity = new Vector2(-speed, rig.velocity.y);
+                        }
+                        */
+                    }
+                }
+            }
+        }
+        //Debug.Log(Input.touchCount);
+
         if (transform.position.x > 346f && transform.position.x < 494.31f)
         {
             GetComponent<SpriteRenderer>().material = CaveMat;
@@ -63,16 +131,20 @@ public class PlayerController : MonoBehaviour {
 
     void FixedUpdate()
     {
-        
-        if (Input.GetKey(KeyCode.A))
+
+
+        if (isPainting == false)
         {
-            rig.velocity = new Vector2(-speed,rig.velocity.y);      
+            if (Input.GetKey(KeyCode.A))
+            {
+                rig.velocity = new Vector2(-speed, rig.velocity.y);
+            }
+            else if (Input.GetKey(KeyCode.D))
+            {
+                rig.velocity = new Vector2(speed, rig.velocity.y);
+            }
         }
-        else if (Input.GetKey(KeyCode.D))
-        {
-            rig.velocity = new Vector2(speed, rig.velocity.y);
-        }
-        else if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E))
         {//进入青色画笔
             DrawBlueLine.can_draw_blue = !DrawBlueLine.can_draw_blue;
             DrawRedLine.can_draw_red = false;

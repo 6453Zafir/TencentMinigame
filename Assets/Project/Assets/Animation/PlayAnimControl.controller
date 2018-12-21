@@ -13,13 +13,13 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: isPainting
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -280,10 +280,10 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 1102343452135599102}
-    m_Position: {x: 360.90796, y: 4.451477, z: 0}
+    m_Position: {x: 360, y: 0, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102514468925612208}
-    m_Position: {x: 347.19653, y: 226.11932, z: 0}
+    m_Position: {x: 348, y: 228, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102286561563049802}
     m_Position: {x: 612.2839, y: 130.13943, z: 0}

@@ -5,7 +5,7 @@ using UnityEngine;
 public class DrawBlueLine: MonoBehaviour
 {
     
-    public float duration =2.0f;//持续时间
+    public float duration =4.0f;//持续时间
 
     private float limit = 5.6f;//青色的线不能超过560像素
 
@@ -142,6 +142,11 @@ public class DrawBlueLine: MonoBehaviour
 
         if (Input.GetMouseButtonUp(0)&& is_draw_blue)
         {
+            if (audioController.isPlaying == false)
+            {
+                //音效控制                
+                audioController.Stop();
+            }
             can_draw_blue = false;
             is_draw_blue = false;
             GameController.wind_count = true;//风生效

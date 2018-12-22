@@ -39,7 +39,7 @@ public class UIController : MonoBehaviour {
 
         if (PlayerController.DeadType ==1|| PlayerController.DeadType == 2)
         {
-            ReCycle();
+            
             if (!isDeadUIShowing)
             {
                 DeadInk.GetComponent<Animator>().SetBool("isDead", true);
@@ -61,7 +61,7 @@ public class UIController : MonoBehaviour {
         }
         if (PlayerController.DeadType == 3)
         {
-            ReCycle();
+            
             if (!isDeadUIShowing)
             {
                 DeadInk.GetComponent<Animator>().SetBool("isDead", true);
@@ -189,6 +189,7 @@ public class UIController : MonoBehaviour {
     //取消黑屏，重设各种状态
     public void HideDeadUI() {
         isDeadUIShowing = true;
+        ReCycle();
         StartCoroutine(Changestate(1.5f));
     }
 

@@ -8,7 +8,9 @@ public class GameController : MonoBehaviour {
     public static int InkNum = 0;
     public static int TotalInk = 30;
     public GameObject canvas;
+    public GameObject endVideo;
     public static float maxPlayerX = -52;
+    private bool endVideoPlayed = false;
 
     public static bool isWindGet = false, isFireGet = false;
     private bool isWindGetSet = false, isFireGetSet = false;
@@ -52,7 +54,7 @@ public class GameController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Time.time > 5 && !canvas.activeInHierarchy)
+        if (Time.time > 5 && !canvas.activeInHierarchy&& maxPlayerX < 500f)
         {
             canvas.SetActive(true);
         }
@@ -74,6 +76,11 @@ public class GameController : MonoBehaviour {
         if (Time.time > 5&& GameObject.Find("BeginVideo")!=null) {
             
             GameObject.Find("BeginVideo").gameObject.SetActive(false);
-        }    
+        }
+        if (maxPlayerX > 501&&!endVideoPlayed) {
+            canvas.SetActive(false);
+            endVideo.SetActive(true);
+            endVideoPlayed = true;
+        }
 	}
 }

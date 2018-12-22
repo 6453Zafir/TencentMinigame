@@ -171,8 +171,13 @@ public class DrawLine2D : MonoBehaviour
             m_LineRenderer.material = m_material;      //Line material
             m_LineRenderer.startColor = Color.white;        //The color of startpoint
             m_LineRenderer.endColor = Color.white;         //The color of endpoint
-            m_LineRenderer.startWidth = 0.4f; //The width of startpoint
-            m_LineRenderer.endWidth = 0.4f;   //The width of endpoint
+            AnimationCurve curve = new AnimationCurve();
+            curve.AddKey(0, 0);
+            curve.AddKey(1, 0);
+            curve.AddKey(0.6f,0.3f);
+            curve.AddKey(0.1f, 0.1f);
+            curve.AddKey(0.9f, 0.1f);
+            m_LineRenderer.widthCurve = curve;
             m_LineRenderer.useWorldSpace = true;  //The points are considered as world space coordinates
 
 

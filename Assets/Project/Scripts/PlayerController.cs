@@ -164,7 +164,7 @@ public class PlayerController : MonoBehaviour
                             else if (touchPosition.x < screenWeight / 2)
                             {
                                 //rig.velocity = new Vector2(-speed, rig.velocity.y);
-                                this.transform.position = new Vector3(this.transform.position.x + transformSpeed, this.transform.position.y, this.transform.position.z);
+                                this.transform.position = new Vector3(this.transform.position.x - transformSpeed, this.transform.position.y, this.transform.position.z);
                             }
 
                         }

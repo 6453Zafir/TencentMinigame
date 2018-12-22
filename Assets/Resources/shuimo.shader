@@ -91,7 +91,7 @@ Shader "Jingyu/shuimo" {
             }
             ENDCG
         }
-        Pass {
+       /* Pass {
             Name "ShadowCaster"
             Tags {
                 "LightMode"="ShadowCaster"
@@ -138,7 +138,7 @@ Shader "Jingyu/shuimo" {
                 SHADOW_CASTER_FRAGMENT(i)
             }
             ENDCG
-        }
+        }*/
     }
     FallBack "Diffuse"
     CustomEditor "ShaderForgeMaterialInspector"

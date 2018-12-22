@@ -25,7 +25,7 @@ public class BGMCon : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         spendTime += Time.deltaTime;
-        Debug.Log(bgmController.isPlaying);
+        //Debug.Log(bgmController.isPlaying);
         if (spendTime > 5 && (player.transform.position.x < 45|| player.transform.position.x>495))
         {
             if (bgmController.clip == bgm2 || bgmController.clip == bgm3)

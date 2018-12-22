@@ -219,9 +219,16 @@ public class PlayerController : MonoBehaviour {
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        Debug.Log("烧到我了，下面的代码跟我没关系");
-        Burn();
-        if (!GameController.wind_count) return;
+        if (!GameController.wind_count && !fire_count) return;
+        Debug.Log("burning");
+        if (other.tag=="Fire")
+        {
+            Debug.Log("burn");
+            Burn();
+            return;
+        }
+       
+       
 
         if (other.tag == "Wind" && PlayerMove)
         {

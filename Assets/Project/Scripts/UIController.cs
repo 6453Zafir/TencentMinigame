@@ -34,7 +34,7 @@ public class UIController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        print(PlayerController.DeadType);
+        //print(PlayerController.DeadType);
         InkMelt.SetFloat("_Threshold", 1- GameController.InkDistance / GameController.InkTotalDistance);
 
         if (PlayerController.DeadType ==1|| PlayerController.DeadType == 2)

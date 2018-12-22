@@ -26,6 +26,8 @@ public class FireDestroy : MonoBehaviour {
             {
                 var draw = GameObject.Find("绳子");
                 Destroy(draw);
+                var draw1 = GameObject.Find("吊石");
+                draw1.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
             }
             
         }

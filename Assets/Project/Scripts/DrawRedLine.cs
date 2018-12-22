@@ -18,7 +18,8 @@ public class DrawRedLine : MonoBehaviour {
     private float limit = 5.6f;
     public static bool can_draw_red;//是否用红画笔
     public static bool is_draw_red;//是否作画
-
+    public AudioClip drawFireAudio;//火焰音效
+    private AudioSource audioController;
     private float begin_time;
     protected List<Vector2> m_Points;
     protected List<List<Vector2>> pos;
@@ -95,6 +96,7 @@ public class DrawRedLine : MonoBehaviour {
     //Debug info
     protected virtual void Awake()
     {
+        audioController = this.GetComponent<AudioSource>();
         buffer = Vector2.zero;
         now = Vector2.zero;
         firepoint1 = Vector2.zero;
@@ -162,6 +164,7 @@ public class DrawRedLine : MonoBehaviour {
 
         if(Input.GetMouseButtonUp(0)&&is_draw_red)
         {
+
             can_draw_red = false;
             is_draw_red = false;
             PlayerController.fire_count = true;//火生效
@@ -171,7 +174,8 @@ public class DrawRedLine : MonoBehaviour {
         if (HadDrawDistance >= limit) return;//超过560像素
         if (Input.GetMouseButtonDown(0) && GameController.InkDistance > 0)//判定是否是画的一条新线
         {
-            if(GameController.RedLine_num==1)
+         
+            if (GameController.RedLine_num==1)
             {
                 DeleteLine();
             }
@@ -202,6 +206,10 @@ public class DrawRedLine : MonoBehaviour {
         }
         else if (Input.GetMouseButton(0) && GameController.InkDistance > 0)
         {
+            if (audioController.isPlaying == false)
+            {
+                audioController.PlayOneShot(drawFireAudio);
+            }
             Vector2 mousePosition = m_Camera.ScreenToWorldPoint(Input.mousePosition);
 
 
@@ -224,7 +232,7 @@ public class DrawRedLine : MonoBehaviour {
             m_EdgeCollider2D.enabled = false;
             if (Hit = Physics2D.Linecast(buffer, now))
             {
-                if (Hit.collider.tag != "Player" && Hit.collider.tag != "Boat" && Hit.collider.tag != "FirePosition"  && Hit.collider.tag != "Light" && Hit.collider.tag != "Tree")
+                if (Hit.collider.tag != "Player" && Hit.collider.tag != "Boat" && Hit.collider.tag != "FirePosition"  && Hit.collider.tag != "Light" && Hit.collider.tag != "Tree" && Hit.collider.tag != "Rope")
                 {
                     m_EdgeCollider2D.enabled = true;
                     return;

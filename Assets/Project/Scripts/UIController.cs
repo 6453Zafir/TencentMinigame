@@ -78,55 +78,63 @@ public class UIController : MonoBehaviour {
             DeadUI.SetActive(true);
 
         }
+        print("可以画黑画笔吗" + DrawLine2D.can_draw_black);
 
-        //print("黑" + DrawLine2D.can_draw_black+"蓝"+
-        //DrawBlueLine.can_draw_blue+"红"+
-        //DrawRedLine.can_draw_red);
+       //print("黑" + DrawLine2D.can_draw_black + "蓝" +
+       // DrawBlueLine.can_draw_blue + "红" +
+       // DrawRedLine.can_draw_red);
     }
 
 
     public void InkButton(GameObject ob) {
-        if (ob.name == "MiddleButton")
-        {
-            startDraw(CurrentBrushColor);
-        }
-        else {
-            //将点击的鱼颜色为中间的颜色
-            switch (CurrentBrushColor)
+        PlayerController pcon = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        //不在作画模式才能继续点
+        if (!pcon.isPainting) {
+            if (ob.name == "MiddleButton")
             {
-                case 0:
-                    ob.GetComponent<Image>().sprite = blackFishTexture;
-                    break;
-                case 1:
-                    ob.GetComponent<Image>().sprite = blueFishTexture;
-                    break;
-                case 2:
-                    ob.GetComponent<Image>().sprite = redFishTexture;
-                    break;
-                default:
-                    break;
+                startDraw(CurrentBrushColor);
             }
-           //将中间的颜色换为被点击的鱼的颜色
-            switch (ob.GetComponent<InkButton>().ColorNum)
+            else
             {
-                case 0:
-                    MiddleInklast.GetComponent<Image>().sprite = blackInkTexture;
-                    break;
-                case 1:
-                    MiddleInklast.GetComponent<Image>().sprite = BlueInkTexture;
-                    break;
-                case 2:
-                    MiddleInklast.GetComponent<Image>().sprite = RedInkTexture;
-                    break;
-                default:
-                    break;
-            }
+                //将点击的鱼颜色为中间的颜色
+                switch (CurrentBrushColor)
+                {
+                    case 0:
+                        ob.GetComponent<Image>().sprite = blackFishTexture;
+                        break;
+                    case 1:
+                        ob.GetComponent<Image>().sprite = blueFishTexture;
+                        break;
+                    case 2:
+                        ob.GetComponent<Image>().sprite = redFishTexture;
+                        break;
+                    default:
+                        break;
+                }
+                //将中间的颜色换为被点击的鱼的颜色
+                switch (ob.GetComponent<InkButton>().ColorNum)
+                {
+                    case 0:
+                        MiddleInklast.GetComponent<Image>().sprite = blackInkTexture;
+                        break;
+                    case 1:
+                        MiddleInklast.GetComponent<Image>().sprite = BlueInkTexture;
+                        break;
+                    case 2:
+                        MiddleInklast.GetComponent<Image>().sprite = RedInkTexture;
+                        break;
+                    default:
+                        break;
+                }
 
-            int temp = ob.GetComponent<InkButton>().ColorNum;
-            startDraw(temp);
-            ob.GetComponent<InkButton>().ColorNum = CurrentBrushColor;
-            CurrentBrushColor = temp;
+                int temp = ob.GetComponent<InkButton>().ColorNum;
+
+                startDraw(temp);
+                ob.GetComponent<InkButton>().ColorNum = CurrentBrushColor;
+                CurrentBrushColor = temp;
+            }
         }
+       
         
     }
 
@@ -142,7 +150,7 @@ public class UIController : MonoBehaviour {
     }
 
 
-
+    //传入画笔编号，开始作画
     private void startDraw(int InkNum) {
         ///在此激活画笔工具
         ///显示确认按钮
@@ -151,8 +159,7 @@ public class UIController : MonoBehaviour {
         pcon.startDraw(InkNum);
     }
 
-   
-
+    //根据玩家位置显示当前拥有的画笔
     public void showUIButton(int inkNum) {
         if (inkNum == 1)
         {
@@ -166,17 +173,20 @@ public class UIController : MonoBehaviour {
         }
     }
 
+    //控制重新开始键
     IEnumerator EnDisableRestartButton(bool isEnable,float waitime) {
         yield return new WaitForSeconds(waitime);
         HideDeadUIBtn.SetActive(isEnable);
     }
 
+    //等待死亡墨水消失后，再隐藏黑屏画布
     IEnumerator DisableDeadUI(bool isEnable, float waitime)
     {
         yield return new WaitForSeconds(waitime);
         HideDeadUIBtn.SetActive(false);
     }
 
+    //取消黑屏，重设各种状态
     public void HideDeadUI() {
         isDeadUIShowing = true;
         StartCoroutine(Changestate(1.5f));

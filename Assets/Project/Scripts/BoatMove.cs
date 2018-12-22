@@ -98,7 +98,22 @@ public class BoatMove : MonoBehaviour {
 
         }
     }
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        //if (other.gameObject.name == "BoatDestination")
+        //{
+        //    GameObject player = GameObject.FindGameObjectWithTag("Player").gameObject;
+        //    Physics.IgnoreCollision(player.GetComponent<Collider>(), GetComponent<Collider>());
+        //    player.transform.SetParent(null);
+        //}
 
+        if (other.gameObject.tag == "Player")
+        {
+            
+              other.transform.SetParent(null);
+
+        }
+    }
     public void reStartBoat() {
         if (transform.childCount != 0) {
             transform.GetChild(0).transform.SetParent(null);

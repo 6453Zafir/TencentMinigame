@@ -30,7 +30,7 @@ public class GameController : MonoBehaviour {
     //风力控制
     public static bool forceReady = false;//是否加过风力了
     public static bool forceOnBoatReady = false;//是否给船加过风力了
-    public static float windforce = 30.0f;
+    public static float windforce = 50.0f;
     public static float forceDuration = 1.0f;//力的持续时间
     public static bool wind_count = false;//风力开始生效，开始计时
 

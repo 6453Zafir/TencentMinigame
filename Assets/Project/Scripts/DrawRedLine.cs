@@ -136,7 +136,7 @@ public class DrawRedLine : MonoBehaviour {
         {
             if (DelFire_num != 0)
             {
-                Debug.Log(DelFire_num + "DelFire_num");
+              //  Debug.Log(DelFire_num + "DelFire_num");
                 var fire = GameObject.Find("fire");
                 Destroy(fire);
                 DelFire_num -= 1;
@@ -352,7 +352,7 @@ public class DrawRedLine : MonoBehaviour {
 
     public void DeleteLine()
     {
-        Debug.Log("111");
+        //Debug.Log("111");
         PlayerController.fire_count = false;
         DelRedLine_num = GameController.RedLine_num;
         GameController.RedLine_num = GameController.RedLine_numzero;
@@ -371,7 +371,7 @@ public class DrawRedLine : MonoBehaviour {
                 
                 GameController.InkDistance += HadDrawDistance;
                 HadDrawDistance = 0;
-                Debug.Log(GameController.InkDistance+"dfassaf");
+              //  Debug.Log(GameController.InkDistance+"dfassaf");
             }
            
         }

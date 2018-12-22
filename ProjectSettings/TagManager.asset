@@ -12,6 +12,7 @@ TagManager:
   - Rope
   - Fire
   - Boat
+  - Wind
   layers:
   - Default
   - TransparentFX

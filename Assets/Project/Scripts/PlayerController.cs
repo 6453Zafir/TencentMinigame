@@ -21,8 +21,8 @@ public class PlayerController : MonoBehaviour {
     public static bool can_draw_red;//是否用红画笔
     public static bool can_draw_black;//是否用黑色画笔
     public static bool fire_count=false;//火开始生效，开始计时
-   
-    public static float begin_time=0.0f;
+    public static bool begin_count = false;
+    
     public GameObject Draw_blue;
     public Material NormalMat, CaveMat;
 
@@ -134,16 +134,40 @@ public class PlayerController : MonoBehaviour {
                 rig.velocity = new Vector2(speed, rig.velocity.y);
             }
         }
-        if (Input.GetKeyDown(KeyCode.E))
-        {//进入青色画笔
-            DrawRedLine DrawBlue = GameObject.Find("Draw_Line_red").GetComponent<DrawRedLine>();
-            DrawBlue.DeleteLine();
+
+        if (GameController.wind_count && GameController.forceReady)//风区存在并未加过力时
+        {
+            //return;
+            if (!force_count)
+            {
+                forceBegin_time = Time.time;
+                Debug.Log("forceBegin_time " + forceBegin_time);
+                force_count = true;
+                wind_direction = (DrawBlueLine.wind_end - DrawBlueLine.wind_start);//风向的单位向量
+                
+                //wind_direction = wind_direction.normalized;
+                rig.AddForce(wind_direction * GameController.windforce, ForceMode2D.Force);
+                Debug.Log("wind_direction * GameController.windforce" + wind_direction * GameController.windforce);
+
+            }
+            
+            //Debug.Log("wind_direction * windforce" + wind_direction * GameController.windforce);
+            if (Time.time - forceBegin_time >= GameController.forceDuration)
+            {
+                Debug.Log("力的作用时间到了" + Time.time);
+                
+                GameController.forceReady =false;//加过力了,不用加了
+                force_count = false;//风力计时结束
+            }
+
         }
 
         if (rig.velocity.x < 0)
             this.transform.localEulerAngles = new Vector3(this.transform.localEulerAngles.x,180,this.transform.localEulerAngles.z);
         else if (rig.velocity.x > 0)
             this.transform.localEulerAngles = new Vector3(this.transform.localEulerAngles.x,0, this.transform.localEulerAngles.z);
+
+
     }
 
 
@@ -177,27 +201,16 @@ public class PlayerController : MonoBehaviour {
 
     private void OnTriggerStay2D(Collider2D other)
     {
+        if (!GameController.wind_count) return;
         Debug.Log("烧到我了，下面的代码跟我没关系");
-        if (GameController.wind_count && !GameController.forceReady )//风区存在并未加过力时
+        if (other.tag == "Wind")
         {
-            if(!force_count)
-            {
-                
-                forceBegin_time = Time.time;
-                Debug.Log("forceBegin_time " + forceBegin_time);
-                force_count = true;                
+            if (!begin_count)
+            {             
+                GameController.forceReady = true;
+                begin_count = true;
             }
-            wind_direction = (DrawBlueLine.wind_end - DrawBlueLine.wind_start);//风向的单位向量
-            wind_direction = wind_direction.normalized;         
-            rig.AddForce(wind_direction * GameController.windforce,ForceMode2D.Force);
-            Debug.Log("wind_direction * windforce" + wind_direction * GameController.windforce);
-            if(Time.time-forceBegin_time>= GameController.forceDuration)
-            {
-                Debug.Log("力的作用时间到了"+ Time.time);
-                GameController.forceReady = true;//加过力了,不用加了
-                force_count = false;//风力计时结束
-            }
-            
+
         }
 
 

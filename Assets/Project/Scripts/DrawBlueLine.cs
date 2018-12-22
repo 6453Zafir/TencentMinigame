@@ -5,7 +5,7 @@ using UnityEngine;
 public class DrawBlueLine: MonoBehaviour
 {
     
-    public float duration = 2.0f;//持续时间
+    public float duration =2.0f;//持续时间
 
     private float limit = 6.2f;//青色的线不能超过560像素
 
@@ -115,8 +115,9 @@ public class DrawBlueLine: MonoBehaviour
         if (GameController.wind_count && (Time.time- begin_time)>duration)
         {//风区持续时间到了
             //Debug.Log(GameController.InkDistance);
-            //Debug.Log("风区持续时间到了"+ Time.time);
-            
+            Debug.Log("风区持续时间到了"+ Time.time);
+            BoatMove.begin_count = false;
+            PlayerController.begin_count = false;
             DeleteLine();
             //Debug.Log(HadDrawDistance+"haddraw");
             return;
@@ -165,6 +166,7 @@ public class DrawBlueLine: MonoBehaviour
             //pos.Add(m_Points);                    //添加到线的数组
            
             m_line = new GameObject("BlueDraw");      //创建新的物体作为画线
+            m_line.tag = "Wind";
             /*****************************参数配置************************/
             /*-----------------------------------------------------------*/
             m_LineRenderer = m_line.AddComponent<LineRenderer>();

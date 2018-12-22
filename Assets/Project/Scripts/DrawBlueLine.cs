@@ -5,7 +5,7 @@ using UnityEngine;
 public class DrawBlueLine: MonoBehaviour
 {
     
-    public float duration =2.0f;//持续时间
+    public float duration =4.0f;//持续时间
 
     private float limit = 5.6f;//青色的线不能超过560像素
 

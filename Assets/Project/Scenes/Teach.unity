@@ -8490,7 +8490,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6246f4dfc46dd964f9f3f2e13f026f8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 2
+  duration: 4
   m_particle: {fileID: 0}
   m_material: {fileID: 2100000, guid: 5dbc5894aa16ae543a5404477f132944, type: 2}
   drawWindAudio: {fileID: 8300000, guid: 9d1272d0722aa3342995aaff396130a7, type: 3}
@@ -9399,11 +9399,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4982176132623800, guid: 94500f9a0ce09a4428e5a2f2fdc8a8f0, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 272.91
+      value: 198.1
       objectReference: {fileID: 0}
     - target: {fileID: 4982176132623800, guid: 94500f9a0ce09a4428e5a2f2fdc8a8f0, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.46
+      value: -10.4
       objectReference: {fileID: 0}
     - target: {fileID: 4982176132623800, guid: 94500f9a0ce09a4428e5a2f2fdc8a8f0, type: 2}
       propertyPath: m_LocalPosition.z

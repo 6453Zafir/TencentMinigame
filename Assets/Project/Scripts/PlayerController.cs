@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour {
     public static bool PlayerMove = true;
     public GameObject Draw_blue;
     public Material NormalMat, CaveMat;
-
+    private Vector2 add = new Vector2(0, 100.0f);
     private float forceBegin_time;
    
     private bool force_count = false;//风力开始计时
@@ -194,8 +194,8 @@ public class PlayerController : MonoBehaviour {
                 wind_direction = (DrawBlueLine.wind_end - DrawBlueLine.wind_start);//风向的单位向量
                 
            
-                rig.AddForce(wind_direction * GameController.windforce, ForceMode2D.Force);
-                Debug.Log("wind_direction * GameController.windforce" + wind_direction * GameController.windforce);
+                rig.AddForce(wind_direction * GameController.windforce+add, ForceMode2D.Force);
+                Debug.Log("wind_direction * GameController.windforce111111杀" + wind_direction * GameController.windforce+add);
 
             }
             

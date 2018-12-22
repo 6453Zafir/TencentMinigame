@@ -193,20 +193,23 @@ public class PlayerController : MonoBehaviour {
         switch (InkNum) {
             case 0:
                 //black
-                DrawLine2D.can_draw_black = !DrawLine2D.can_draw_black;
+                if (GameController.InkDistance > 0) DrawLine2D.can_draw_black = !DrawLine2D.can_draw_black;
+                else DrawLine2D.can_draw_black = false;
                 DrawBlueLine.can_draw_blue = false;
                 DrawRedLine.can_draw_red = false;
                 break;
             case 1:
                 //blue
-                DrawBlueLine.can_draw_blue = !DrawBlueLine.can_draw_blue;
+                if (GameController.InkDistance > 0) DrawBlueLine.can_draw_blue = !DrawBlueLine.can_draw_blue;
+                else DrawBlueLine.can_draw_blue = false;
                 DrawRedLine.can_draw_red = false;
                 DrawLine2D.can_draw_black = false;
                 GameController.wind_count = false;
                 break;
             case 2:
                 //red
-                DrawRedLine.can_draw_red = !DrawRedLine.can_draw_red;
+                if (GameController.InkDistance > 0) DrawRedLine.can_draw_red = !DrawRedLine.can_draw_red;
+                else DrawRedLine.can_draw_red = false;
                 DrawLine2D.can_draw_black = false;
                 DrawBlueLine.can_draw_blue = false;
                 fire_count = false;

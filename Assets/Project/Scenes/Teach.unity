@@ -9399,11 +9399,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4982176132623800, guid: 94500f9a0ce09a4428e5a2f2fdc8a8f0, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 198.1
+      value: 210.63
       objectReference: {fileID: 0}
     - target: {fileID: 4982176132623800, guid: 94500f9a0ce09a4428e5a2f2fdc8a8f0, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -10.4
+      value: 1.27
       objectReference: {fileID: 0}
     - target: {fileID: 4982176132623800, guid: 94500f9a0ce09a4428e5a2f2fdc8a8f0, type: 2}
       propertyPath: m_LocalPosition.z
@@ -9542,6 +9542,11 @@ Prefab:
       propertyPath: drawFireAudio
       value: 
       objectReference: {fileID: 8300000, guid: d5e7a108bfc022e45a6ce5ca66daac06, type: 3}
+    - target: {fileID: 114117844176199608, guid: 94500f9a0ce09a4428e5a2f2fdc8a8f0,
+        type: 2}
+      propertyPath: speed
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 94500f9a0ce09a4428e5a2f2fdc8a8f0, type: 2}
   m_IsPrefabAsset: 0

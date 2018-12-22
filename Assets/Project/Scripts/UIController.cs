@@ -34,10 +34,12 @@ public class UIController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        print(PlayerController.DeadType);
         InkMelt.SetFloat("_Threshold", 1- GameController.InkDistance / GameController.InkTotalDistance);
 
         if (PlayerController.DeadType ==1|| PlayerController.DeadType == 2)
         {
+            ReCycle();
             if (!isDeadUIShowing)
             {
                 DeadInk.GetComponent<Animator>().SetBool("isDead", true);
@@ -59,6 +61,7 @@ public class UIController : MonoBehaviour {
         }
         if (PlayerController.DeadType == 3)
         {
+            ReCycle();
             if (!isDeadUIShowing)
             {
                 DeadInk.GetComponent<Animator>().SetBool("isDead", true);
@@ -73,11 +76,12 @@ public class UIController : MonoBehaviour {
                 currentShowingText.color = transColor;
             }
             DeadUI.SetActive(true);
+
         }
 
-        print("黑" + DrawLine2D.can_draw_black+"蓝"+
-        DrawBlueLine.can_draw_blue+"红"+
-        DrawRedLine.can_draw_red);
+        //print("黑" + DrawLine2D.can_draw_black+"蓝"+
+        //DrawBlueLine.can_draw_blue+"红"+
+        //DrawRedLine.can_draw_red);
     }
 
 
@@ -137,6 +141,8 @@ public class UIController : MonoBehaviour {
         DrawRed.DeleteLine();
     }
 
+
+
     private void startDraw(int InkNum) {
         ///在此激活画笔工具
         ///显示确认按钮
@@ -144,8 +150,8 @@ public class UIController : MonoBehaviour {
         PlayerController pcon = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         pcon.startDraw(InkNum);
     }
-    
 
+   
 
     public void showUIButton(int inkNum) {
         if (inkNum == 1)
@@ -170,9 +176,10 @@ public class UIController : MonoBehaviour {
         yield return new WaitForSeconds(waitime);
         HideDeadUIBtn.SetActive(false);
     }
+
     public void HideDeadUI() {
         isDeadUIShowing = true;
-       StartCoroutine(Changestate(1.5f));
+        StartCoroutine(Changestate(1.5f));
     }
 
     public void ToggleHelp(GameObject go)

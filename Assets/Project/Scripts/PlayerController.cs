@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour {
    
     private bool force_count = false;//风力开始计时
 
-    
+    private bool isBurnFireNewed = false;
 
   
    // public static bool wind_ready = false;//风生效
@@ -201,11 +201,12 @@ public class PlayerController : MonoBehaviour {
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (!GameController.wind_count) return;
         Debug.Log("烧到我了，下面的代码跟我没关系");
+        Burn();
+        if (!GameController.wind_count) return;
+
         if (other.tag == "Wind" && PlayerMove)
         {
-            
             if (!begin_count)
             {             
                 GameController.forceReady = true;
@@ -213,9 +214,31 @@ public class PlayerController : MonoBehaviour {
             }
 
         }
-
-
-
     }
-    
+
+    public void Burn() {
+        if (!isBurnFireNewed) {
+            GameObject BornParticle = Instantiate(Resources.Load("PlayerFireParticle") as GameObject, transform);
+            BornParticle.transform.localPosition = Vector3.zero;
+
+            var shape = BornParticle.GetComponent<ParticleSystem>().shape;
+            shape.enabled = true;
+           // shape.spriteRenderer.enabled = true;
+
+            shape.shapeType = ParticleSystemShapeType.SpriteRenderer;
+            shape.meshShapeType = ParticleSystemMeshShapeType.Edge;
+            shape.sprite = GetComponent<SpriteRenderer>().sprite;
+          
+            StartCoroutine(ClearBurnParticle(3f, BornParticle));
+            isBurnFireNewed = true;
+        }
+    }
+
+    IEnumerator ClearBurnParticle(float waittime, GameObject obToDestory)
+    {
+        yield return new WaitForSeconds(waittime);
+        DeadType = 3;
+        isBurnFireNewed = false;
+        Destroy(obToDestory);
+    }
 }

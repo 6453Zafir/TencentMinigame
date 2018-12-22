@@ -23,6 +23,7 @@ public class BoatMove : MonoBehaviour {
             {
                 if (transform.GetChild(0).gameObject.name == "Player") ;
                 transform.GetChild(0).transform.SetParent(null);
+                PlayerController.PlayerMove = true;
             }
         }
         if (GameController.wind_count && GameController.forceOnBoatReady)//风区存在并未加过力时
@@ -86,6 +87,7 @@ public class BoatMove : MonoBehaviour {
             if (transform.childCount==0) {
 
                 other.transform.SetParent(gameObject.transform);
+                PlayerController.PlayerMove = false;
             }
 
         }

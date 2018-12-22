@@ -171,7 +171,15 @@ public class DrawRedLine : MonoBehaviour {
             begin_time = Time.time;//火生效的开始时间
             GameController.RedLine_num += 1;    //已画线条数加一
         }
-        if (HadDrawDistance >= limit) return;//超过560像素
+        if (HadDrawDistance >= limit)
+        {
+            can_draw_red = false;
+            is_draw_red = false;
+            PlayerController.fire_count = true;//火生效
+            begin_time = Time.time;//火生效的开始时间
+            GameController.RedLine_num += 1;    //已画线条数加一
+            return;//超过560像素
+        } 
         if (Input.GetMouseButtonDown(0) && GameController.InkDistance > 0)//判定是否是画的一条新线
         {
          

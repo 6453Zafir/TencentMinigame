@@ -130,7 +130,12 @@ public class DrawLine2D : MonoBehaviour
             
 
         }
-        if (HadDrawDistance >= limit) return;
+        if (HadDrawDistance >= limit)
+        {
+            can_draw_black = false;
+            return;
+        }
+        
 
         if (Input.GetMouseButtonDown(0))
         { 

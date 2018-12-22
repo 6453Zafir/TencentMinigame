@@ -46,6 +46,12 @@ public class PlayerController : MonoBehaviour {
 
     public bool isPainting; //是否正在画
 
+    //两种画笔的音效控制
+    public AudioClip drawFireAudio;//火焰音效
+    public AudioClip drawWindAudio;//风音效
+    private AudioSource audioController;
+
+
 
     void Start () {
         rig = GetComponent<Rigidbody2D>();     
@@ -57,11 +63,23 @@ public class PlayerController : MonoBehaviour {
         screenWeight = Screen.width;
         characterAnimator = GetComponent<Animator>();
         isPainting = false;
+
+        audioController = this.GetComponent<AudioSource>();
+
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
+        if (audioController.isPlaying == false)
+        {
+            //音效控制
+            if (DrawBlueLine.can_draw_blue == true)
+                audioController.PlayOneShot(drawWindAudio);
+            if (DrawRedLine.can_draw_red == true)
+                audioController.PlayOneShot(drawFireAudio);
+        }
+
         isPainting = DrawLine2D.can_draw_black || DrawBlueLine.can_draw_blue || DrawRedLine.can_draw_red;
         //设置人物动画机参数 ，动画机共两个bool参数，一个isMoving(是否走路)，一个isPainting(是否绘画)，绘画动画优先。
         if (rig.velocity.x != 0)

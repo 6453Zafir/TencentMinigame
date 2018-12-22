@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour {
     public static bool PlayerMove = true;
     public GameObject Draw_blue;
     public Material NormalMat, CaveMat;
-    private Vector2 add = new Vector2(0, 100.0f);
+    private Vector2 add = new Vector2(0, 90.0f);
     private float forceBegin_time;
    
     private bool force_count = false;//风力开始计时

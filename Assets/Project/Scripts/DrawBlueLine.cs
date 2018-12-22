@@ -146,13 +146,20 @@ public class DrawBlueLine: MonoBehaviour
             is_draw_blue = false;
             GameController.wind_count = true;//风生效
             begin_time = Time.time;//风生效的开始时间
-
+            Debug.Log("风生效的开始时间1");
             GameController.BlueLine_num += 1;     //已画线条数加一
             wind_end = m_Camera.ScreenToWorldPoint(Input.mousePosition);
         }
 
         if (HadDrawDistance >= limit)
         {
+            can_draw_blue = false;
+            is_draw_blue = false;
+            GameController.wind_count = true;//风生效
+            begin_time = Time.time;//风生效的开始时间
+            Debug.Log("风生效的开始时间2");
+            GameController.BlueLine_num += 1;     //已画线条数加一
+            wind_end = m_Camera.ScreenToWorldPoint(Input.mousePosition);
             return;
         }
         

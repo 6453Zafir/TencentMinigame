@@ -9,17 +9,17 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1443906430725212}
+  m_RootGameObject: {fileID: 1614718034399630}
   m_IsPrefabAsset: 1
---- !u!1 &1443906430725212
+--- !u!1 &1614718034399630
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4245157563032174}
-  - component: {fileID: 120724918256008248}
+  - component: {fileID: 4365507299109930}
+  - component: {fileID: 120807494857156158}
   m_Layer: 0
   m_Name: WindLineRenderer
   m_TagString: Untagged
@@ -27,12 +27,12 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4245157563032174
+--- !u!4 &4365507299109930
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1443906430725212}
+  m_GameObject: {fileID: 1614718034399630}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -142.76375, y: -353.90878, z: 0.8034953}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -40,12 +40,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!120 &120724918256008248
+--- !u!120 &120807494857156158
 LineRenderer:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1443906430725212}
+  m_GameObject: {fileID: 1614718034399630}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -55,7 +55,7 @@ LineRenderer:
   m_ReflectionProbeUsage: 0
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: bdc1fabd9727e4243a31b0a097cd98dd, type: 2}
+  - {fileID: 2100000, guid: 5dbc5894aa16ae543a5404477f132944, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -75,26 +75,25 @@ LineRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Positions:
-  - {x: 88.93324, y: -0.009530783, z: 0}
+  m_Positions: []
   m_Parameters:
     serializedVersion: 2
-    widthMultiplier: 1
+    widthMultiplier: 2
     widthCurve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.5138893
-        inSlope: -0.3443979
-        outSlope: -0.3443979
+        value: 0
+        inSlope: 0
+        outSlope: 0
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
-        outWeight: 1
+        outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.50396574
-        value: 0.23611069
+        time: 0.4577469
+        value: 1
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -115,16 +114,16 @@ LineRenderer:
       m_RotationOrder: 0
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.1621972, g: 0.19159406, b: 0.2205882, a: 1}
-      key1: {r: 0.24448532, g: 0.2664047, b: 0.2794118, a: 1}
-      key2: {r: 0.17647058, g: 0.17575467, b: 0.17387542, a: 0}
+      key0: {r: 0.7025844, g: 0.7671758, b: 0.8308824, a: 1}
+      key1: {r: 0.2422145, g: 0.5309628, b: 0.58823526, a: 1}
+      key2: {r: 0.29044116, g: 0.4653144, b: 0.5, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
       key5: {r: 0, g: 0, b: 0, a: 0}
       key6: {r: 0, g: 0, b: 0, a: 0}
       key7: {r: 0, g: 0, b: 0, a: 0}
       ctime0: 0
-      ctime1: 1349
+      ctime1: 65535
       ctime2: 65535
       ctime3: 0
       ctime4: 0
@@ -140,7 +139,7 @@ LineRenderer:
       atime6: 0
       atime7: 0
       m_Mode: 0
-      m_NumColorKeys: 3
+      m_NumColorKeys: 2
       m_NumAlphaKeys: 2
     numCornerVertices: 0
     numCapVertices: 0

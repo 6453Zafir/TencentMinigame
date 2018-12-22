@@ -5,8 +5,8 @@ using UnityEngine;
 public class CameraPosition : MonoBehaviour
 {
 
-    public float areaDis;//相机范围大小
-    public float startPositionX;//相机初始位置
+    public float areaDis = 1.5f;//相机范围大小
+    public float startPositionX = 4;//相机初始位置
     public float moveSpeed;//人物到达边框后相机跟随速度  0.06还算平滑
     public float xPosition;//相机x轴目标位置
     public float yPosition;//相机y轴目标位置

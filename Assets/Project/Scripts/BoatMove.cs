@@ -13,6 +13,7 @@ public class BoatMove : MonoBehaviour {
     // Use this for initialization
     void Start () {
         rig = GetComponent<Rigidbody2D>();
+        rig.constraints = RigidbodyConstraints2D.FreezePosition | RigidbodyConstraints2D.FreezeRotation;
     }
     // Update is called once per frame
     void FixedUpdate () {
@@ -78,9 +79,14 @@ public class BoatMove : MonoBehaviour {
         if (other.gameObject.tag =="Player")
         {
             //撞到的是人,保持静止
-            if (transform.position.x < 280f) {
+            if (transform.position.x < 283f)
+            {
 
                 rig.constraints = RigidbodyConstraints2D.FreezePosition | RigidbodyConstraints2D.FreezeRotation;
+            }
+            else {
+                rig.constraints = RigidbodyConstraints2D.None;
+                rig.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
             }
             //if(other.gameObject.GetComponent<PlayerController>()!=null)
             //    other.gameObject.GetComponent<PlayerController>().enabled = false;
@@ -91,7 +97,13 @@ public class BoatMove : MonoBehaviour {
             }
 
         }
+    }
 
-      
+    public void reStartBoat() {
+        if (transform.childCount != 0) {
+            transform.GetChild(0).transform.SetParent(null);
+        }
+        transform.localPosition = Vector3.zero;
+        rig.constraints = RigidbodyConstraints2D.FreezePosition | RigidbodyConstraints2D.FreezeRotation;
     }
 }

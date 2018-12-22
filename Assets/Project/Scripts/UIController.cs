@@ -276,6 +276,7 @@ public class UIController : MonoBehaviour {
                     }
                     if (player.transform.position.x > 277)
                     {
+                        GameObject.FindGameObjectWithTag("Boat").GetComponent<BoatMove>().reStartBoat();
                         pos = GameObject.Find("/CheckPoints/CP1-6").transform.position;
                     }
                     if (player.transform.position.x > 322)

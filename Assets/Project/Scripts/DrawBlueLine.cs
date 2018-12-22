@@ -163,15 +163,14 @@ public class DrawBlueLine: MonoBehaviour
             buffer = Vector2.zero;                //初始化上一画点
             now = Vector2.zero;                   //初始化现在画点
             m_Points = new List<Vector2>();       //初始化一条新线
-                                                  //pos.Add(m_Points);                    //添加到线的数组
+            //pos.Add(m_Points);                    //添加到线的数组
+           
 
-            m_line = Instantiate(Resources.Load("WindLineRenderer") as GameObject);
-            m_line.name = "BlueDraw";
-           // m_line = new GameObject("BlueDraw");      //创建新的物体作为画线
+            m_line = new GameObject("BlueDraw");      //创建新的物体作为画线
             m_line.tag = "Wind";
             /*****************************参数配置************************/
             /*-----------------------------------------------------------*/
-            m_LineRenderer = m_line.GetComponent<LineRenderer>();
+            m_LineRenderer = m_line.AddComponent<LineRenderer>();
             m_EdgeCollider2D = m_line.AddComponent<EdgeCollider2D>();
             m_EdgeCollider2D.isTrigger = true;
             //Settings of the linerender component
@@ -205,7 +204,7 @@ public class DrawBlueLine: MonoBehaviour
             m_EdgeCollider2D.enabled = false;
             if (Hit = Physics2D.Linecast(buffer, now))
             {
-                if (Hit.collider.tag != "Player" && Hit.collider.tag != "Boat" && Hit.collider.tag != "FirePosition" && Hit.collider.tag != "Light" && Hit.collider.tag != "Tree")
+                if (Hit.collider.tag != "Player" && Hit.collider.tag != "Boat" && Hit.collider.tag != "Fire")
                 {
                     return;
                 }

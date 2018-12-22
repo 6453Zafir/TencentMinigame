@@ -64,9 +64,10 @@ public class BoatMove : MonoBehaviour {
         if (other.gameObject.tag =="Player")
         {
             //撞到的是人,保持静止
-
+            Debug.Log("1111");
             rig.constraints = RigidbodyConstraints2D.FreezePosition | RigidbodyConstraints2D.FreezeRotation;
 
         }
     }
+   
 }

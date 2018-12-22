@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour {
     public static bool can_draw_black;//是否用黑色画笔
     public static bool fire_count=false;//火开始生效，开始计时
     public static bool begin_count = false;
-    
+    public static bool PlayerMove = true;
     public GameObject Draw_blue;
     public Material NormalMat, CaveMat;
 
@@ -203,8 +203,9 @@ public class PlayerController : MonoBehaviour {
     {
         if (!GameController.wind_count) return;
         Debug.Log("烧到我了，下面的代码跟我没关系");
-        if (other.tag == "Wind")
+        if (other.tag == "Wind" && PlayerMove)
         {
+            
             if (!begin_count)
             {             
                 GameController.forceReady = true;

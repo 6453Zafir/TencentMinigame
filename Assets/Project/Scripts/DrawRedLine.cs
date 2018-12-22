@@ -15,7 +15,7 @@ public class DrawRedLine : MonoBehaviour {
     [SerializeField]
     protected Camera m_Camera;
 
-    private float limit = 6.2f;
+    private float limit = 5.6f;
     public static bool can_draw_red;//是否用红画笔
     public static bool is_draw_red;//是否作画
 

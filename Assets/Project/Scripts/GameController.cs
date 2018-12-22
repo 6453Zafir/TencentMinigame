@@ -7,7 +7,7 @@ public class GameController : MonoBehaviour {
     public static int LevelNum = 0;
     public static int InkNum = 0;
     public static int TotalInk = 30;
-
+    public GameObject canvas;
     public static float maxPlayerX = -52;
 
     public static bool isWindGet = false, isFireGet = false;
@@ -40,17 +40,22 @@ public class GameController : MonoBehaviour {
     float duration = 2.0f;
     private void Awake()
     {
+        
         Player = GameObject.FindGameObjectWithTag("Player").gameObject;
         UICon = GameObject.Find("Canvas").gameObject.GetComponent<UIController>();
     }
 
     // Use this for initialization
     void Start () {
-		
-	}
+        canvas.SetActive(false);
+    }
 	
 	// Update is called once per frame
 	void Update () {
+        if (Time.time > 5 && !canvas.activeInHierarchy)
+        {
+            canvas.SetActive(true);
+        }
         if (Player.transform.position.x > maxPlayerX) {
             maxPlayerX = Player.transform.position.x;
         }

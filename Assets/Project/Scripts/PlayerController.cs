@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : MonoBehaviour
+{
 
     private Rigidbody2D rig;
-    public float speed;
-   
-   // private Vector2 previous_v = Vector2.zero;
+    //public float speed; 废弃的速度
+    public float transformSpeed;//不用刚体的移动速度
+    private float lastSecondPosition;//物体上一秒的位置
+
+    // private Vector2 previous_v = Vector2.zero;
     private int face;//记录朝向
     private Vector2 wind_direction = Vector2.zero;//风向的单位向量
     /// <summary>
@@ -21,24 +24,24 @@ public class PlayerController : MonoBehaviour {
     public static bool can_draw_blue;//是否青画笔
     public static bool can_draw_red;//是否用红画笔
     public static bool can_draw_black;//是否用黑色画笔
-    public static bool fire_count=false;//火开始生效，开始计时
+    public static bool fire_count = false;//火开始生效，开始计时
     public static bool begin_count = false;
     public static bool PlayerMove = true;
     public GameObject Draw_blue;
     public Material NormalMat, CaveMat;
     private Vector2 add = new Vector2(0, 90.0f);
     private float forceBegin_time;
-   
+
     private bool force_count = false;//风力开始计时
 
     private bool isBurnFireNewed = false;
 
-  
-   // public static bool wind_ready = false;//风生效
+
+    // public static bool wind_ready = false;//风生效
     //private bool fire_ready = false;//火生效
-   // public static float begin_time=0.0f;
+    // public static float begin_time=0.0f;
     //public GameObject Draw_blue;
-//>>>>>>> Stashed changes
+    //>>>>>>> Stashed changes
     // Use this for initialization
     private Animator characterAnimator;//人物动画机
 
@@ -54,8 +57,9 @@ public class PlayerController : MonoBehaviour {
 
 
 
-    void Start () {
-        rig = GetComponent<Rigidbody2D>();     
+    void Start()
+    {
+        rig = GetComponent<Rigidbody2D>();
         face = 1;//开始向右
         forceBegin_time = 0.0f;
 
@@ -67,22 +71,41 @@ public class PlayerController : MonoBehaviour {
 
         //audioController = this.GetComponent<AudioSource>();
 
+        transformSpeed = 0.04f; //初始化速度
+        lastSecondPosition = this.transform.position.x; //初始化上一帧位置
+
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+    // Update is called once per frame
+    void Update()
     {
-       // if (audioController.isPlaying == false)
-       // {
-            //音效控制
-       //     if (DrawBlueLine.can_draw_blue == true)
-       //         audioController.PlayOneShot(drawWindAudio);
-       //     if (DrawRedLine.can_draw_red == true)
-       //         audioController.PlayOneShot(drawFireAudio);
-       // }
+        // if (audioController.isPlaying == false)
+        // {
+        //音效控制
+        //     if (DrawBlueLine.can_draw_blue == true)
+        //         audioController.PlayOneShot(drawWindAudio);
+        //     if (DrawRedLine.can_draw_red == true)
+        //         audioController.PlayOneShot(drawFireAudio);
+        // }
 
         isPainting = DrawLine2D.can_draw_black || DrawBlueLine.can_draw_blue || DrawRedLine.can_draw_red;
         //设置人物动画机参数 ，动画机共两个bool参数，一个isMoving(是否走路)，一个isPainting(是否绘画)，绘画动画优先。
+        if (this.transform.position.x > lastSecondPosition)
+        {
+            characterAnimator.SetBool("isMoving", true);
+            this.transform.localEulerAngles = new Vector3(this.transform.localEulerAngles.x, 0, this.transform.localEulerAngles.z);
+        }
+        else if (this.transform.position.x < lastSecondPosition)
+        {
+            characterAnimator.SetBool("isMoving", true);
+            this.transform.localEulerAngles = new Vector3(this.transform.localEulerAngles.x, 180, this.transform.localEulerAngles.z);
+        }
+        else
+            characterAnimator.SetBool("isMoving", false);
+        lastSecondPosition = this.transform.position.x;
+
+        //废弃了
+        /*
         if (rig.velocity.x != 0)
         {
             characterAnimator.SetBool("isMoving", true);  //人物速度不为零，设置变量，播放走路动画
@@ -91,9 +114,10 @@ public class PlayerController : MonoBehaviour {
         {
             characterAnimator.SetBool("isMoving", false);
         }
+        */
 
         //设置人物动画机参数
-        if (isPainting==true)
+        if (isPainting == true)
         {
             characterAnimator.SetBool("isPainting", true);  //正在绘画，设置动画机参数
         }
@@ -120,7 +144,7 @@ public class PlayerController : MonoBehaviour {
             {
                 if (IsPointerOverUIObject())
                 {
-                    
+
                 }
                 else
                 {
@@ -134,17 +158,19 @@ public class PlayerController : MonoBehaviour {
                             //对比屏幕坐标进行移动
                             if (touchPosition.x > screenWeight / 2)
                             {
-                                rig.velocity = new Vector2(speed, rig.velocity.y);
+                                //rig.velocity = new Vector2(speed, rig.velocity.y);
+                                this.transform.position = new Vector3(this.transform.position.x + transformSpeed, this.transform.position.y, this.transform.position.z);
                             }
                             else if (touchPosition.x < screenWeight / 2)
                             {
-                                rig.velocity = new Vector2(-speed, rig.velocity.y);
+                                //rig.velocity = new Vector2(-speed, rig.velocity.y);
+                                this.transform.position = new Vector3(this.transform.position.x + transformSpeed, this.transform.position.y, this.transform.position.z);
                             }
 
                         }
                     }
                 }
-              
+
             }
         }
 
@@ -154,11 +180,12 @@ public class PlayerController : MonoBehaviour {
             Camera.main.backgroundColor = Color.black;
             transform.GetChild(0).gameObject.SetActive(true);
         }
-        else {
+        else
+        {
             GetComponent<SpriteRenderer>().material = NormalMat;
             Camera.main.backgroundColor = 0.95f * Color.white;
-            if(transform.GetChild(0).gameObject.activeInHierarchy)
-            transform.GetChild(0).gameObject.SetActive(false);
+            if (transform.GetChild(0).gameObject.activeInHierarchy)
+                transform.GetChild(0).gameObject.SetActive(false);
         }
     }
     private bool IsPointerOverUIObject()
@@ -175,11 +202,13 @@ public class PlayerController : MonoBehaviour {
         {
             if (Input.GetKey(KeyCode.A))
             {
-                rig.velocity = new Vector2(-speed, rig.velocity.y);
+                //rig.velocity = new Vector2(-speed, rig.velocity.y);
+                this.transform.position = new Vector3(this.transform.position.x - transformSpeed, this.transform.position.y, this.transform.position.z);
             }
             else if (Input.GetKey(KeyCode.D))
             {
-                rig.velocity = new Vector2(speed, rig.velocity.y);
+                //rig.velocity = new Vector2(speed, rig.velocity.y);
+                this.transform.position = new Vector3(this.transform.position.x + transformSpeed, this.transform.position.y, this.transform.position.z);
             }
         }
 
@@ -192,35 +221,39 @@ public class PlayerController : MonoBehaviour {
                 Debug.Log("forceBegin_time " + forceBegin_time);
                 force_count = true;
                 wind_direction = (DrawBlueLine.wind_end - DrawBlueLine.wind_start);//风向的单位向量
-                
-           
-                rig.AddForce(wind_direction * GameController.windforce+add, ForceMode2D.Force);
-                Debug.Log("wind_direction * GameController.windforce111111杀" + wind_direction * GameController.windforce+add);
+
+
+                rig.AddForce(wind_direction * GameController.windforce + add, ForceMode2D.Force);
+                Debug.Log("wind_direction * GameController.windforce111111杀" + wind_direction * GameController.windforce + add);
 
             }
-            
+
             //Debug.Log("wind_direction * windforce" + wind_direction * GameController.windforce);
             if (Time.time - forceBegin_time >= GameController.forceDuration)
             {
                 Debug.Log("力的作用时间到了" + Time.time);
-                
-                GameController.forceReady =false;//加过力了,不用加了
+
+                GameController.forceReady = false;//加过力了,不用加了
                 force_count = false;//风力计时结束
             }
 
         }
 
+        //删掉
+        /*
         if (rig.velocity.x < 0)
             this.transform.localEulerAngles = new Vector3(this.transform.localEulerAngles.x,180,this.transform.localEulerAngles.z);
         else if (rig.velocity.x > 0)
             this.transform.localEulerAngles = new Vector3(this.transform.localEulerAngles.x,0, this.transform.localEulerAngles.z);
-
+        */
 
     }
 
 
-    public void startDraw(int InkNum) {
-        switch (InkNum) {
+    public void startDraw(int InkNum)
+    {
+        switch (InkNum)
+        {
             case 0:
                 //black
                 if (GameController.InkDistance > 0) DrawLine2D.can_draw_black = !DrawLine2D.can_draw_black;
@@ -260,14 +293,14 @@ public class PlayerController : MonoBehaviour {
         }
         if (!GameController.wind_count && !fire_count) return;
         Debug.Log("burning");
-       
-       
-       
+
+
+
 
         if (other.tag == "Wind" && PlayerMove)
         {
             if (!begin_count)
-            {             
+            {
                 GameController.forceReady = true;
                 begin_count = true;
             }
@@ -275,19 +308,21 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-    public void Burn() {
-        if (!isBurnFireNewed) {
+    public void Burn()
+    {
+        if (!isBurnFireNewed)
+        {
             GameObject BornParticle = Instantiate(Resources.Load("PlayerFireParticle") as GameObject, transform);
             BornParticle.transform.localPosition = Vector3.zero;
 
             var shape = BornParticle.GetComponent<ParticleSystem>().shape;
             shape.enabled = true;
-           // shape.spriteRenderer.enabled = true;
+            // shape.spriteRenderer.enabled = true;
 
             shape.shapeType = ParticleSystemShapeType.SpriteRenderer;
             shape.meshShapeType = ParticleSystemMeshShapeType.Edge;
             shape.sprite = gameObject.GetComponent<SpriteRenderer>().sprite;
-          
+
             StartCoroutine(ClearBurnParticle(3f, BornParticle));
             isBurnFireNewed = true;
         }

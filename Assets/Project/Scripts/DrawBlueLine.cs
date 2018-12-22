@@ -23,7 +23,8 @@ public class DrawBlueLine: MonoBehaviour
 
     public static Vector2 wind_start = Vector2.zero;//风的起始位置
     public static Vector2 wind_end = Vector2.zero;//风的结束位置
-
+    public AudioClip drawWindAudio;//风音效
+    private AudioSource audioController;
     private Vector2 buffer = Vector2.zero;
     private Vector2 now = Vector2.zero;
     private RaycastHit2D Hit;
@@ -84,6 +85,7 @@ public class DrawBlueLine: MonoBehaviour
     //Debug info
     protected virtual void Awake()
     {
+        audioController = this.GetComponent<AudioSource>();
         buffer = Vector2.zero;
         now = Vector2.zero;
         can_draw_blue = false;
@@ -155,7 +157,8 @@ public class DrawBlueLine: MonoBehaviour
         }
         
         if (Input.GetMouseButtonDown(0) && GameController.InkDistance > 0)//当鼠标按键按下时，返回一次true，后面参数0是左键，1是右键，2是中键		
-        {           
+        {
+
             if (GameController.BlueLine_num == 1)
             {      
                 DeleteLine();
@@ -188,6 +191,11 @@ public class DrawBlueLine: MonoBehaviour
         
         if (Input.GetMouseButton(0) && GameController.InkDistance > 0)//当鼠标按键按下时，返回true，可能多次，根据你鼠标按下的时间	，后面参数0是左键，1是右键，2是中键	
         {
+            if (audioController.isPlaying == false)
+            {
+                //音效控制                
+                audioController.PlayOneShot(drawWindAudio);
+            }
             mouseposition = m_Camera.ScreenToWorldPoint(Input.mousePosition);
             if (buffer == Vector2.zero)
             {              

@@ -80,9 +80,9 @@ public class UIController : MonoBehaviour {
         }
         print("可以画黑画笔吗" + DrawLine2D.can_draw_black);
 
-       //print("黑" + DrawLine2D.can_draw_black + "蓝" +
-       // DrawBlueLine.can_draw_blue + "红" +
-       // DrawRedLine.can_draw_red);
+        print("黑" + DrawLine2D.can_draw_black + "蓝" +
+         DrawBlueLine.can_draw_blue + "红" +
+         DrawRedLine.can_draw_red);
     }
 
 

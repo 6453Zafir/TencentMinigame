@@ -1660,11 +1660,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
-  windforce: 10
   Draw_blue: {fileID: 0}
   NormalMat: {fileID: 2100000, guid: 26b752ec7d41f5b41a1bdcd7d3e6d6e0, type: 2}
   CaveMat: {fileID: 2100000, guid: 7556f34fd10e31246bf2bf3fcaf6db36, type: 2}
-  forceDuration: 1
   isPainting: 0
 --- !u!114 &226945847
 MonoBehaviour:
@@ -1737,7 +1735,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 226945845}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.14, z: 0}
+  m_LocalPosition: {x: 153.19, y: -1.16, z: 0}
   m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_Children: []
   m_Father: {fileID: 419203658}
@@ -2941,9 +2939,10 @@ GameObject:
   - component: {fileID: 442045276}
   - component: {fileID: 442045275}
   - component: {fileID: 442045278}
+  - component: {fileID: 442045279}
   m_Layer: 0
   m_Name: Boat
-  m_TagString: Untagged
+  m_TagString: Boat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3243,13 +3242,24 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_AngularDrag: 0
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 6
+--- !u!114 &442045279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 442045274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8b68b5f82609bd46938e41bb68fd672, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &449785729
 GameObject:
   m_ObjectHideFlags: 0
@@ -7035,7 +7045,7 @@ SpriteRenderer:
   m_Size: {x: 125.64, y: 21.600002}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1165168535 stripped

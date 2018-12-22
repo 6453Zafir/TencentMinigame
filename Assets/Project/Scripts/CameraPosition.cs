@@ -30,7 +30,7 @@ public class CameraPosition : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        Debug.Log(player.transform.position.x);
+        //Debug.Log(player.transform.position.x);
 
         xPosition = this.transform.position.x;
         yPosition = this.transform.position.y;

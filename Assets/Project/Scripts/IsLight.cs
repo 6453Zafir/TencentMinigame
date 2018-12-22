@@ -25,7 +25,8 @@ public class IsLight : MonoBehaviour {
     }
     private void OnTriggerStay2D(Collider2D other)
     {
-        if(!ready)
+        if (!PlayerController.fire_count) return;
+        if(!ready&& other.tag!="Player")
         {
             Islight = true;
             ready = true;

@@ -27,6 +27,12 @@ public class GameController : MonoBehaviour {
     public static int BlueLine_numzero = 0;
     public static int BlueLine_num = 0;
 
+    //风力控制
+    public static bool forceReady = false;//是否加过风力了
+    public static float windforce = 7.0f;
+    public static float forceDuration = 1.0f;//力的持续时间
+    public static bool wind_count = false;//风力开始生效，开始计时
+
     private UIController UICon;
     private GameObject Player;
     float duration = 2.0f;

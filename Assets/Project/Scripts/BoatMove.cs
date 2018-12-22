@@ -14,11 +14,17 @@ public class BoatMove : MonoBehaviour {
     void Start () {
         rig = GetComponent<Rigidbody2D>();
     }
-	
-	// Update is called once per frame
-	void FixedUpdate () {
+    // Update is called once per frame
+    void FixedUpdate () {
 
-
+        if (transform.position.x > 310f)
+        {
+            if (transform.childCount!=0)
+            {
+                if (transform.GetChild(0).gameObject.name == "Player") ;
+                transform.GetChild(0).transform.SetParent(null);
+            }
+        }
         if (GameController.wind_count && GameController.forceOnBoatReady)//风区存在并未加过力时
         {
             rig.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
@@ -61,12 +67,29 @@ public class BoatMove : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D other)
     {
+        //if (other.gameObject.name == "BoatDestination")
+        //{
+        //    GameObject player = GameObject.FindGameObjectWithTag("Player").gameObject;
+        //    Physics.IgnoreCollision(player.GetComponent<Collider>(), GetComponent<Collider>());
+        //    player.transform.SetParent(null);
+        //}
+
         if (other.gameObject.tag =="Player")
         {
             //撞到的是人,保持静止
+            if (transform.position.x < 280f) {
 
-            rig.constraints = RigidbodyConstraints2D.FreezePosition | RigidbodyConstraints2D.FreezeRotation;
+                rig.constraints = RigidbodyConstraints2D.FreezePosition | RigidbodyConstraints2D.FreezeRotation;
+            }
+            //if(other.gameObject.GetComponent<PlayerController>()!=null)
+            //    other.gameObject.GetComponent<PlayerController>().enabled = false;
+            if (transform.childCount==0) {
+
+                other.transform.SetParent(gameObject.transform);
+            }
 
         }
+
+      
     }
 }

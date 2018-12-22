@@ -262,42 +262,83 @@ public class UIController : MonoBehaviour {
         Vector3 pos = Vector3.zero;
         switch (GameController.LevelNum)
         {
+            //case 0:
+            //    {
+            //        if (player.transform.position.x > 30)
+            //        {
+            //            pos = GameObject.Find("/CheckPoints/CP1-1").transform.position;
+            //        }
+            //        if (player.transform.position.x > 50)
+            //        {
+            //            pos = GameObject.Find("/CheckPoints/CP1-2").transform.position;
+            //        }
+            //        if (player.transform.position.x > 126)
+            //        {
+            //            pos = GameObject.Find("/CheckPoints/CP1-3").transform.position;
+            //        }
+            //        if (player.transform.position.x > 190)
+            //        {
+            //            pos = GameObject.Find("/CheckPoints/CP1-4").transform.position;
+            //        }
+            //        if (player.transform.position.x > 224)
+            //        {
+            //            pos = GameObject.Find("/CheckPoints/CP1-5").transform.position;
+            //        }
+            //        if (player.transform.position.x > 277)
+            //        {
+            //            GameObject.FindGameObjectWithTag("Boat").GetComponent<BoatMove>().reStartBoat();
+            //            pos = GameObject.Find("/CheckPoints/CP1-6").transform.position;
+            //        }
+            //        if (player.transform.position.x > 322)
+            //        {
+            //            pos = GameObject.Find("/CheckPoints/CP1-7").transform.position;
+            //        }
+            //        if (player.transform.position.x > 415)
+            //        {
+            //            pos = GameObject.Find("/CheckPoints/CP1-8").transform.position;
+            //        }
+            //        if (player.transform.position.x > 462)
+            //        {
+            //            pos = GameObject.Find("/CheckPoints/CP1-9").transform.position;
+            //        }
+            //        break;
+            //    }
             case 0:
                 {
-                    if (player.transform.position.x > 30)
+                    if (GameController.maxPlayerX> 30)
                     {
                         pos = GameObject.Find("/CheckPoints/CP1-1").transform.position;
                     }
-                    if (player.transform.position.x > 50)
+                    if (GameController.maxPlayerX > 50)
                     {
                         pos = GameObject.Find("/CheckPoints/CP1-2").transform.position;
                     }
-                    if (player.transform.position.x > 126)
+                    if (GameController.maxPlayerX > 126)
                     {
                         pos = GameObject.Find("/CheckPoints/CP1-3").transform.position;
                     }
-                    if (player.transform.position.x > 190)
+                    if (GameController.maxPlayerX > 190)
                     {
                         pos = GameObject.Find("/CheckPoints/CP1-4").transform.position;
                     }
-                    if (player.transform.position.x > 224)
+                    if (GameController.maxPlayerX > 224)
                     {
                         pos = GameObject.Find("/CheckPoints/CP1-5").transform.position;
                     }
-                    if (player.transform.position.x > 277)
+                    if (GameController.maxPlayerX > 277)
                     {
                         GameObject.FindGameObjectWithTag("Boat").GetComponent<BoatMove>().reStartBoat();
                         pos = GameObject.Find("/CheckPoints/CP1-6").transform.position;
                     }
-                    if (player.transform.position.x > 322)
+                    if (GameController.maxPlayerX > 322)
                     {
                         pos = GameObject.Find("/CheckPoints/CP1-7").transform.position;
                     }
-                    if (player.transform.position.x > 415)
+                    if (GameController.maxPlayerX > 415)
                     {
                         pos = GameObject.Find("/CheckPoints/CP1-8").transform.position;
                     }
-                    if (player.transform.position.x > 462)
+                    if (GameController.maxPlayerX > 462)
                     {
                         pos = GameObject.Find("/CheckPoints/CP1-9").transform.position;
                     }

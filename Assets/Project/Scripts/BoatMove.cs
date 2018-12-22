@@ -8,7 +8,7 @@ public class BoatMove : MonoBehaviour {
     private bool force_count = false;//风力开始计时
     public static bool begin_count = false;//风力开始计时 
     private Vector2 wind_direction = Vector2.zero;//风向的单位向量
-    private Vector2 drag = new Vector2(-40.0f, 0);
+    private Vector2 add = new Vector2(200.0f, 0);
     
     // Use this for initialization
     void Start () {
@@ -37,8 +37,8 @@ public class BoatMove : MonoBehaviour {
                 force_count = true;
                 
                 wind_direction = (DrawBlueLine.wind_end - DrawBlueLine.wind_start);//风向的单位向量
-                rig.AddForce(wind_direction * GameController.windforce+drag, ForceMode2D.Force);
-                Debug.Log("wind_direction * windforce" + wind_direction * GameController.windforce);
+                rig.AddForce(wind_direction * GameController.windforce+add, ForceMode2D.Force);
+                Debug.Log("wind_direction * windforce" + wind_direction * GameController.windforce + add);
             }
 
             if (Time.time - forceBegin_time >= GameController.forceDuration)

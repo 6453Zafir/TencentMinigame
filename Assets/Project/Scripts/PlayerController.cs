@@ -227,7 +227,7 @@ public class PlayerController : MonoBehaviour {
 
             shape.shapeType = ParticleSystemShapeType.SpriteRenderer;
             shape.meshShapeType = ParticleSystemMeshShapeType.Edge;
-            shape.sprite = GetComponent<SpriteRenderer>().sprite;
+            shape.sprite = gameObject.GetComponent<SpriteRenderer>().sprite;
           
             StartCoroutine(ClearBurnParticle(3f, BornParticle));
             isBurnFireNewed = true;

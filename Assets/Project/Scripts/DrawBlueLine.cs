@@ -7,7 +7,7 @@ public class DrawBlueLine: MonoBehaviour
     
     public float duration =2.0f;//持续时间
 
-    private float limit = 6.2f;//青色的线不能超过560像素
+    private float limit = 5.6f;//青色的线不能超过560像素
 
     public static bool can_draw_blue;//是否青画笔
     public static bool is_draw_blue;//是否作画

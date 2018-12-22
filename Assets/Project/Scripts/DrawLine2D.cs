@@ -145,9 +145,10 @@ public class DrawLine2D : MonoBehaviour
 
             if (is_draw_black)
             {
-                can_draw_black = false;
                 is_draw_black = false;
             }
+
+            can_draw_black = false;
         }
         if (!can_draw_black) return;
 

@@ -1161,7 +1161,25 @@ Prefab:
       propertyPath: m_RaycastTarget
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 114390748549181148, guid: c333a7dcf795dbd4f84078f475cb9981,
+        type: 2}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114390748549181148, guid: c333a7dcf795dbd4f84078f475cb9981,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114390748549181148, guid: c333a7dcf795dbd4f84078f475cb9981,
+        type: 2}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114195335405169256, guid: c333a7dcf795dbd4f84078f475cb9981, type: 2}
+    - {fileID: 114819640890966282, guid: c333a7dcf795dbd4f84078f475cb9981, type: 2}
+    - {fileID: 114390748549181148, guid: c333a7dcf795dbd4f84078f475cb9981, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: c333a7dcf795dbd4f84078f475cb9981, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &217151609
@@ -1474,6 +1492,11 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &239644419 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1890444287018492, guid: c333a7dcf795dbd4f84078f475cb9981,
+    type: 2}
+  m_PrefabInternal: {fileID: 162227980}
 --- !u!1 &245131810
 GameObject:
   m_ObjectHideFlags: 0
@@ -2688,7 +2711,7 @@ MonoBehaviour:
   m_Script: {fileID: -619905303, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
+  m_FirstSelected: {fileID: 239644419}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &558549690
@@ -5012,7 +5035,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: a038b284634e29f4aaf058814aa61a6f, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -11.2
+      value: -1.9
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: a038b284634e29f4aaf058814aa61a6f, type: 2}
       propertyPath: m_LocalPosition.z
@@ -9207,11 +9230,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4982176132623800, guid: 94500f9a0ce09a4428e5a2f2fdc8a8f0, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 150
+      value: -53
       objectReference: {fileID: 0}
     - target: {fileID: 4982176132623800, guid: 94500f9a0ce09a4428e5a2f2fdc8a8f0, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.4
+      value: -8.86
       objectReference: {fileID: 0}
     - target: {fileID: 4982176132623800, guid: 94500f9a0ce09a4428e5a2f2fdc8a8f0, type: 2}
       propertyPath: m_LocalPosition.z
@@ -9350,6 +9373,25 @@ Prefab:
       propertyPath: drawFireAudio
       value: 
       objectReference: {fileID: 8300000, guid: d5e7a108bfc022e45a6ce5ca66daac06, type: 3}
+    - target: {fileID: 1712486573791090, guid: 94500f9a0ce09a4428e5a2f2fdc8a8f0, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 212749426412374802, guid: 94500f9a0ce09a4428e5a2f2fdc8a8f0,
+        type: 2}
+      propertyPath: m_Color.r
+      value: 0.9150943
+      objectReference: {fileID: 0}
+    - target: {fileID: 212749426412374802, guid: 94500f9a0ce09a4428e5a2f2fdc8a8f0,
+        type: 2}
+      propertyPath: m_Color.g
+      value: 0.9150943
+      objectReference: {fileID: 0}
+    - target: {fileID: 212749426412374802, guid: 94500f9a0ce09a4428e5a2f2fdc8a8f0,
+        type: 2}
+      propertyPath: m_Color.b
+      value: 0.9150943
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 94500f9a0ce09a4428e5a2f2fdc8a8f0, type: 2}
   m_IsPrefabAsset: 0
@@ -10369,7 +10411,7 @@ Camera:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_RenderingPath: -1
+  m_RenderingPath: 1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
@@ -10429,7 +10471,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2112212579}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 25058fe1bd2d9244cad2b96646b45e43, type: 3}
   m_Name: 

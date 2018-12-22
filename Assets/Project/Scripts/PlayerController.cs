@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour {
 
@@ -100,31 +101,50 @@ public class PlayerController : MonoBehaviour {
         {
             characterAnimator.SetBool("isPainting", false);  //不在绘画，设置动画机参数
         }
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    if (EventSystem.current.IsPointerOverGameObject())
+        //    {
 
+        //        print("On UI");
+        //    }
+        //    else
+        //    {
+        //        print("On scene");
+        //    }
+        //}
         if (isPainting == false)//不在绘画方能移动
         {
             //触摸屏幕控制左右移动
             if (Input.touchCount > 0)
             {
-                for (int i = 0; i < Input.touchCount; i++)
+                if (IsPointerOverUIObject())
                 {
-                    Touch touch = Input.touches[i];
-                    //手指触摸但没有移动/滑动
-                    if (touch.phase == TouchPhase.Stationary || touch.phase == TouchPhase.Moved)
+                    
+                }
+                else
+                {
+                    for (int i = 0; i < Input.touchCount; i++)
                     {
-                        touchPosition = touch.position;
-                        //对比屏幕坐标进行移动
-                        if (touchPosition.x > screenWeight / 2)
+                        Touch touch = Input.touches[i];
+                        //手指触摸但没有移动/滑动
+                        if (touch.phase == TouchPhase.Stationary || touch.phase == TouchPhase.Moved)
                         {
-                            rig.velocity = new Vector2(speed, rig.velocity.y);
-                        }
-                        else if (touchPosition.x < screenWeight / 2)
-                        {
-                            rig.velocity = new Vector2(-speed, rig.velocity.y);
-                        }
+                            touchPosition = touch.position;
+                            //对比屏幕坐标进行移动
+                            if (touchPosition.x > screenWeight / 2)
+                            {
+                                rig.velocity = new Vector2(speed, rig.velocity.y);
+                            }
+                            else if (touchPosition.x < screenWeight / 2)
+                            {
+                                rig.velocity = new Vector2(-speed, rig.velocity.y);
+                            }
 
+                        }
                     }
                 }
+              
             }
         }
 
@@ -132,13 +152,23 @@ public class PlayerController : MonoBehaviour {
         {
             GetComponent<SpriteRenderer>().material = CaveMat;
             Camera.main.backgroundColor = Color.black;
+            transform.GetChild(0).gameObject.SetActive(true);
         }
         else {
             GetComponent<SpriteRenderer>().material = NormalMat;
-            Camera.main.backgroundColor = Color.white;
+            Camera.main.backgroundColor = 0.95f * Color.white;
+            if(transform.GetChild(0).gameObject.activeInHierarchy)
+            transform.GetChild(0).gameObject.SetActive(false);
         }
     }
-
+    private bool IsPointerOverUIObject()
+    {
+        PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
+        eventDataCurrentPosition.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
+        return results.Count > 0;
+    }
     void FixedUpdate()
     {
         if (isPainting == false)

@@ -15,7 +15,12 @@ public class FireDestroy : MonoBehaviour {
 	}
     private void OnTriggerStay2D(Collider2D other)
     {
-
+        if(other.tag=="Fire")
+        {
+            var draw = GameObject.Find("树1");
+            Destroy(draw);
+        }
+       
 
     }
 }

@@ -184,6 +184,7 @@ public class DrawRedLine : MonoBehaviour {
             m_Points = new List<Vector2>();       //初始化一条新线
             pos.Add(m_Points);                    //添加到线的数组           
             m_line = new GameObject("RedDraw");      //创建新的物体作为画线
+            m_line.tag = "Fire";
 
             m_LineRenderer = m_line.AddComponent<LineRenderer>();
             m_EdgeCollider2D = m_line.AddComponent<EdgeCollider2D>();          
@@ -223,7 +224,7 @@ public class DrawRedLine : MonoBehaviour {
             m_EdgeCollider2D.enabled = false;
             if (Hit = Physics2D.Linecast(buffer, now))
             {
-                if (Hit.collider.tag != "Player" && Hit.collider.tag != "Boat" && Hit.collider.tag != "Fire")
+                if (Hit.collider.tag != "Player" && Hit.collider.tag != "Boat" && Hit.collider.tag != "Fire" && Hit.collider.tag != "Tree")
                 {
                     m_EdgeCollider2D.enabled = true;
                     return;

@@ -145,7 +145,7 @@ public class PlayerController : MonoBehaviour {
                 force_count = true;
                 wind_direction = (DrawBlueLine.wind_end - DrawBlueLine.wind_start);//风向的单位向量
                 
-                //wind_direction = wind_direction.normalized;
+           
                 rig.AddForce(wind_direction * GameController.windforce, ForceMode2D.Force);
                 Debug.Log("wind_direction * GameController.windforce" + wind_direction * GameController.windforce);
 

@@ -8,8 +8,8 @@ public class BoatMove : MonoBehaviour {
     private bool force_count = false;//风力开始计时
     public static bool begin_count = false;//风力开始计时 
     private Vector2 wind_direction = Vector2.zero;//风向的单位向量
-    private Vector2 wind = new Vector2(0.0f, 0.0f);//风力
-    public float enlarge = 5.0f;//风力放大系数
+    private Vector2 drag = new Vector2(-40.0f, 0);
+    
     // Use this for initialization
     void Start () {
         rig = GetComponent<Rigidbody2D>();
@@ -29,17 +29,15 @@ public class BoatMove : MonoBehaviour {
                 force_count = true;
                 
                 wind_direction = (DrawBlueLine.wind_end - DrawBlueLine.wind_start);//风向的单位向量
-                wind.x = wind_direction.magnitude * enlarge;
-                wind_direction = wind_direction.normalized;
-                rig.AddForce(wind_direction * GameController.windforce* wind, ForceMode2D.Force);
-                Debug.Log("wind_direction * windforce" + wind_direction * GameController.windforce * wind);
+                rig.AddForce(wind_direction * GameController.windforce+drag, ForceMode2D.Force);
+                Debug.Log("wind_direction * windforce" + wind_direction * GameController.windforce);
             }
 
             if (Time.time - forceBegin_time >= GameController.forceDuration)
             {
                 Debug.Log("力的作用时间到了" + Time.time);
                 GameController.forceOnBoatReady = false;//加过力了,不用加了
-                rig.AddForce(-wind_direction * GameController.windforce * wind, ForceMode2D.Force);
+                //rig.AddForce(-wind_direction * GameController.windforce * wind, ForceMode2D.Force);
                 force_count = false;//风力计时结束
             }
         }

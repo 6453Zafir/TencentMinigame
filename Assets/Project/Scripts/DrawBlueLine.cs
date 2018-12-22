@@ -205,7 +205,7 @@ public class DrawBlueLine: MonoBehaviour
             m_EdgeCollider2D.enabled = false;
             if (Hit = Physics2D.Linecast(buffer, now))
             {
-                if (Hit.collider.tag != "Player" && Hit.collider.tag != "Boat" && Hit.collider.tag != "Fire")
+                if (Hit.collider.tag != "Player" && Hit.collider.tag != "Boat" && Hit.collider.tag != "FirePosition" && Hit.collider.tag != "Light" && Hit.collider.tag != "Tree")
                 {
                     return;
                 }

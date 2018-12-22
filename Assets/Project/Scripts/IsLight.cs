@@ -18,7 +18,8 @@ public class IsLight : MonoBehaviour {
         {
             GameObject newObject = Instantiate(myPrefab) as GameObject;
             newObject.transform.position = this.gameObject.GetComponent<Transform>().position + missing;
-            newObject.transform.name = "FireWithLight";
+            newObject.transform.name = "Light";
+            newObject.tag = "Light";
             Islight = false;
         }
       

@@ -142,6 +142,11 @@ public class DrawBlueLine: MonoBehaviour
 
         if (Input.GetMouseButtonUp(0)&& is_draw_blue)
         {
+            if (audioController.isPlaying == false)
+            {
+                //音效控制                
+                audioController.Stop();
+            }
             can_draw_blue = false;
             is_draw_blue = false;
             GameController.wind_count = true;//风生效

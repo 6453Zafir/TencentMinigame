@@ -164,7 +164,11 @@ public class DrawRedLine : MonoBehaviour {
 
         if(Input.GetMouseButtonUp(0)&&is_draw_red)
         {
-
+            if (audioController.isPlaying == true)
+            {
+                // Debug.Log("xixixixiix");
+                audioController.Stop();
+            }
             can_draw_red = false;
             is_draw_red = false;
             PlayerController.fire_count = true;//火生效
@@ -214,8 +218,10 @@ public class DrawRedLine : MonoBehaviour {
         }
         else if (Input.GetMouseButton(0) && GameController.InkDistance > 0)
         {
+            Debug.Log("xixi");
             if (audioController.isPlaying == false)
             {
+                Debug.Log("xixixixiix");
                 audioController.PlayOneShot(drawFireAudio);
             }
             Vector2 mousePosition = m_Camera.ScreenToWorldPoint(Input.mousePosition);

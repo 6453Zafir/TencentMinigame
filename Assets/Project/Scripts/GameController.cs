@@ -54,7 +54,7 @@ public class GameController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Time.time > 5 && !canvas.activeInHierarchy&& maxPlayerX < 500f)
+        if (Time.time > 6 && !canvas.activeInHierarchy&& maxPlayerX < 500f)
         {
             canvas.SetActive(true);
         }
@@ -73,7 +73,7 @@ public class GameController : MonoBehaviour {
             isFireGet = true;
             isFireGetSet = true;
         }
-        if (Time.time > 5&& GameObject.Find("BeginVideo")!=null) {
+        if (Time.time > 6&& GameObject.Find("BeginVideo")!=null) {
             
             GameObject.Find("BeginVideo").gameObject.SetActive(false);
         }

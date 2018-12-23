@@ -47,7 +47,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4670148396262190
 Transform:
   m_ObjectHideFlags: 1
@@ -68,7 +68,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1127939715189866}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 367.04, y: -1.0799999, z: 0}
+  m_LocalPosition: {x: 185.7, y: -6.2, z: 0}
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children:
   - {fileID: 4670148396262190}
@@ -87,7 +87,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 0.2
   m_AngularDrag: 0.05
   m_GravityScale: 0.42
   m_Material: {fileID: 0}
@@ -176,7 +176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a0e3ff2a12a7d84aa3caa2ef6435422, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  transformSpeed: 0.1
   Draw_blue: {fileID: 0}
   NormalMat: {fileID: 2100000, guid: 26b752ec7d41f5b41a1bdcd7d3e6d6e0, type: 2}
   CaveMat: {fileID: 2100000, guid: 7556f34fd10e31246bf2bf3fcaf6db36, type: 2}
@@ -227,7 +227,7 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 9eb2f9a79a58927459bf67363c00abfe, type: 2}
+  - {fileID: 2100000, guid: 26b752ec7d41f5b41a1bdcd7d3e6d6e0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -247,7 +247,7 @@ SpriteRenderer:
   m_SortingLayerID: 26511963
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 38b5c980496fb8e46aed941d485d86de, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1f492843bba69e943a546f5c37dbeecc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

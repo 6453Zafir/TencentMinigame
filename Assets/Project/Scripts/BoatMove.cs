@@ -20,8 +20,9 @@ public class BoatMove : MonoBehaviour {
 
     private void Update()
     {
-        if (player.transform.position.x < 300 && player.transform.position.x > 250)
+        if (player.transform.position.x < 308 && player.transform.position.x > 250)
         {
+            GetComponent<BoxCollider2D>().enabled = true;
             float playerDis = Vector2.Distance(new Vector2(player.transform.position.x, player.transform.position.y), new Vector2(transform.position.x, transform.position.y));
             if (playerDis < 3)
             {
@@ -36,13 +37,14 @@ public class BoatMove : MonoBehaviour {
                 PlayerController.canControl = true;
             }
         }
-        else if (player.transform.position.x > 300 && player.transform.position.x < 320) {
+        else if (player.transform.position.x > 308 && player.transform.position.x < 320) {
+            GetComponent<BoxCollider2D>().enabled = false;
             player.transform.SetParent(null);
             PlayerController.PlayerMove = true;
             PlayerController.canControl = true;
         }
 
-            if (transform.position.x > 310f)
+       if (transform.position.x > 310f)
         {
             if (transform.childCount != 0)
             {

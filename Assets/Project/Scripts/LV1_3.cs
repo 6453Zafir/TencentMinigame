@@ -59,7 +59,7 @@ public class LV1_3 : MonoBehaviour {
             //    currentRock.transform.localPosition = Vector3.zero;
             //    StartCoroutine(CreatRockWithCD(currentRock));
             //}
-            if (Vector3.Distance(currentRock.transform.position, Target.transform.position) < 2.7f)
+            if (Vector3.Distance(currentRock.transform.position, Target.transform.position) < 2.7f && !isPass)
             {
                 StartCoroutine(PassAnimation(1));
                 isPass = true;

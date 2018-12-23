@@ -8738,11 +8738,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4982176132623800, guid: 94500f9a0ce09a4428e5a2f2fdc8a8f0, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -51
+      value: 462.43
       objectReference: {fileID: 0}
     - target: {fileID: 4982176132623800, guid: 94500f9a0ce09a4428e5a2f2fdc8a8f0, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 8
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 4982176132623800, guid: 94500f9a0ce09a4428e5a2f2fdc8a8f0, type: 2}
       propertyPath: m_LocalPosition.z
@@ -8872,6 +8872,18 @@ Prefab:
       propertyPath: transformSpeed
       value: 0.04
       objectReference: {fileID: 0}
+    - target: {fileID: 114117844176199608, guid: 94500f9a0ce09a4428e5a2f2fdc8a8f0,
+        type: 2}
+      propertyPath: Stone
+      value: 
+      objectReference: {fileID: 1905418340757668, guid: f16d15065f4d8df4092c6a11ce70c1f5,
+        type: 2}
+    - target: {fileID: 114117844176199608, guid: 94500f9a0ce09a4428e5a2f2fdc8a8f0,
+        type: 2}
+      propertyPath: Rope
+      value: 
+      objectReference: {fileID: 1202969681775878, guid: e414ac5a9f58f404f8c3250c9b6f415b,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 94500f9a0ce09a4428e5a2f2fdc8a8f0, type: 2}
   m_IsPrefabAsset: 0

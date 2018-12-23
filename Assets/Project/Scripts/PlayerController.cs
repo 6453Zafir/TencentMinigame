@@ -32,7 +32,10 @@ public class PlayerController : MonoBehaviour
     public Material NormalMat, CaveMat;
     private Vector2 add = new Vector2(0, 90.0f);
     private float forceBegin_time;
-
+    public GameObject Stone;
+    public GameObject Rope;
+    public Vector3 StonePos = new Vector3(466.27f,6.62f,0);
+    public Vector3 RopePos = new Vector3(466.17f, 9.266941f,0);
     private bool force_count = false;//风力开始计时
 
     private bool isBurnFireNewed = false;
@@ -316,6 +319,20 @@ public class PlayerController : MonoBehaviour
     {
         if (!isBurnFireNewed)
         {
+            var Stone1 = GameObject.Find("吊石");
+            if(Stone1)
+            {
+                var Rope1 = GameObject.Find("绳子");
+                if(Rope1) Destroy(Rope1);
+                Destroy(Stone1);
+                GameObject newObject = Instantiate(Stone) as GameObject;
+                newObject.transform.position = StonePos;
+                newObject.transform.name = "吊石";
+                GameObject newObject1 = Instantiate(Rope) as GameObject;
+                newObject1.transform.position = RopePos;
+                newObject1.transform.name = "绳子";
+            }
+           
             GameObject BornParticle = Instantiate(Resources.Load("PlayerFireParticle") as GameObject, transform);
             BornParticle.transform.localPosition = Vector3.zero;
 

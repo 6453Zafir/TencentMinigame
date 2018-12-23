@@ -82,7 +82,7 @@ public class DrawBlueLine: MonoBehaviour
         }
     }
 
-    //Debug info
+    ////Debug info
     protected virtual void Awake()
     {
         audioController = this.GetComponent<AudioSource>();
@@ -93,13 +93,13 @@ public class DrawBlueLine: MonoBehaviour
         if (m_LineRenderer == null)
         {
             //Line Render not assigned
-            Debug.LogWarning("DrawLine: Line Renderer not assigned, Adding and Using default Line Renderer.");
+            //Debug.LogWarning("DrawLine: Line Renderer not assigned, Adding and Using default Line Renderer.");
             CreateDefaultLineRenderer();
         }
         if (m_EdgeCollider2D == null && m_AddCollider)
         {
             //Edge Collider 2D not assigned
-            Debug.LogWarning("DrawLine: Edge Collider 2D not assigned, Adding and Using default Edge Collider 2D.");
+            //Debug.LogWarning("DrawLine: Edge Collider 2D not assigned, Adding and Using default Edge Collider 2D.");
             CreateDefaultEdgeCollider2D();
         }
 
@@ -116,12 +116,12 @@ public class DrawBlueLine: MonoBehaviour
     {            
         if (GameController.wind_count && (Time.time- begin_time)>duration)
         {//风区持续时间到了
-            //Debug.Log(GameController.InkDistance);
-            Debug.Log("风区持续时间到了"+ Time.time);
+            ////Debug.Log(GameController.InkDistance);
+            //Debug.Log("风区持续时间到了"+ Time.time);
             BoatMove.begin_count = false;
             PlayerController.begin_count = false;
             DeleteLine();
-            //Debug.Log(HadDrawDistance+"haddraw");
+            ////Debug.Log(HadDrawDistance+"haddraw");
             return;
         }
         if (GameController.wind_count)
@@ -151,7 +151,7 @@ public class DrawBlueLine: MonoBehaviour
             is_draw_blue = false;
             GameController.wind_count = true;//风生效
             begin_time = Time.time;//风生效的开始时间
-            Debug.Log("风生效的开始时间1");
+            //Debug.Log("风生效的开始时间1");
             GameController.BlueLine_num += 1;     //已画线条数加一
             wind_end = m_Camera.ScreenToWorldPoint(Input.mousePosition);
         }
@@ -162,7 +162,7 @@ public class DrawBlueLine: MonoBehaviour
             is_draw_blue = false;
             GameController.wind_count = true;//风生效
             begin_time = Time.time;//风生效的开始时间
-            Debug.Log("风生效的开始时间2");
+            //Debug.Log("风生效的开始时间2");
             GameController.BlueLine_num += 1;     //已画线条数加一
             wind_end = m_Camera.ScreenToWorldPoint(Input.mousePosition);
             return;
@@ -336,7 +336,7 @@ public class DrawBlueLine: MonoBehaviour
         {
 
             var draw = GameObject.Find("BlueDraw");
-            //Debug.Log("delete line" + draw);
+            ////Debug.Log("delete line" + draw);
             Destroy(draw);
             DelBlueLine_num -= 1;
             GameController.InkDistance += HadDrawDistance;

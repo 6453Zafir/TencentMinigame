@@ -22,6 +22,11 @@ public class FireDestroy : MonoBehaviour {
                 var draw= GameObject.Find("树1");
                 Destroy(draw);
             }
+            if (this.gameObject.name == "树2")
+            {
+                var draw = GameObject.Find("树2");
+                Destroy(draw);
+            }
             else if(this.gameObject.name == "绳子")
             {
                 var draw = GameObject.Find("绳子");

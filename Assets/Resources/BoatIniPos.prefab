@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 50271705334507144}
   - component: {fileID: 114580619380518554}
   - component: {fileID: 70741869454294998}
+  - component: {fileID: 61412595731748976}
   m_Layer: 0
   m_Name: Boat
   m_TagString: Boat
@@ -52,7 +53,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1669632220021466}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 281.55, y: -2.28, z: 0}
+  m_LocalPosition: {x: 283.14, y: -2.28, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4596223328717516}
@@ -82,16 +83,41 @@ Rigidbody2D:
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 1
-  m_Mass: 6.466432
-  m_LinearDrag: 0.5
-  m_AngularDrag: 0.05
-  m_GravityScale: 0.1
+  m_UseAutoMass: 0
+  m_Mass: 10
+  m_LinearDrag: 0.1
+  m_AngularDrag: 0.01
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 6
+--- !u!61 &61412595731748976
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1020270679939900}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.25959778, y: 0.351431}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 9.12, y: 3.92}
+    newSize: {x: 9.12, y: 3.92}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3.2010803, y: 1.1615446}
+  m_EdgeRadius: 0
 --- !u!70 &70741869454294998
 CapsuleCollider2D:
   m_ObjectHideFlags: 1
@@ -104,8 +130,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.2464859, y: -0.63674784}
-  m_Size: {x: 7.8875766, y: 0.8389758}
+  m_Offset: {x: 0.24648589, y: -0.7256056}
+  m_Size: {x: 7.8875785, y: 1.0166935}
   m_Direction: 1
 --- !u!114 &114580619380518554
 MonoBehaviour:

@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     /// 3：烧死
     /// </summary>
     public static int DeadType = 0;
+    public static bool canControl = true;
     public static bool can_draw_blue;//是否青画笔
     public static bool can_draw_red;//是否用红画笔
     public static bool can_draw_black;//是否用黑色画笔
@@ -90,6 +91,8 @@ public class PlayerController : MonoBehaviour
 
 
         isPainting = DrawLine2D.can_draw_black || DrawBlueLine.can_draw_blue || DrawRedLine.can_draw_red;
+
+        characterAnimator.SetBool("canControl", canControl);
         //设置人物动画机参数 ，动画机共两个bool参数，一个isMoving(是否走路)，一个isPainting(是否绘画)，绘画动画优先。
         if (this.transform.position.x > lastSecondPosition)
         {
@@ -138,7 +141,7 @@ public class PlayerController : MonoBehaviour
         //        print("On scene");
         //    }
         //}
-        if (isPainting == false)//不在绘画方能移动
+        if (isPainting == false && canControl)//不在绘画方能移动
         {
             //触摸屏幕控制左右移动
             if (Input.touchCount > 0)
@@ -199,7 +202,7 @@ public class PlayerController : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if (isPainting == false)
+        if (isPainting == false&&canControl)
         {
             if (Input.GetKey(KeyCode.A))
             {

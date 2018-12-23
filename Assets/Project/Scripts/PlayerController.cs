@@ -88,6 +88,7 @@ public class PlayerController : MonoBehaviour
         //         audioController.PlayOneShot(drawFireAudio);
         // }
 
+
         isPainting = DrawLine2D.can_draw_black || DrawBlueLine.can_draw_blue || DrawRedLine.can_draw_red;
         //设置人物动画机参数 ，动画机共两个bool参数，一个isMoving(是否走路)，一个isPainting(是否绘画)，绘画动画优先。
         if (this.transform.position.x > lastSecondPosition)

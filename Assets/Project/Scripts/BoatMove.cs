@@ -13,7 +13,6 @@ public class BoatMove : MonoBehaviour {
     // Use this for initialization
     void Start () {
         rig = GetComponent<Rigidbody2D>();
-        rig.constraints = RigidbodyConstraints2D.FreezePosition | RigidbodyConstraints2D.FreezeRotation;
     }
     // Update is called once per frame
     void FixedUpdate () {
@@ -78,40 +77,30 @@ public class BoatMove : MonoBehaviour {
 
         if (other.gameObject.tag =="Player")
         {
-            //撞到的是人,保持静止
-            if (transform.position.x < 283f)
-            {
+            ////撞到的是人,保持静止
+            //if (transform.position.x < 283f)
+            //{
 
-                rig.constraints = RigidbodyConstraints2D.FreezePosition | RigidbodyConstraints2D.FreezeRotation;
-            }
-            else {
-                rig.constraints = RigidbodyConstraints2D.None;
-                rig.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
-            }
-            //if(other.gameObject.GetComponent<PlayerController>()!=null)
-            //    other.gameObject.GetComponent<PlayerController>().enabled = false;
+            //    rig.constraints = RigidbodyConstraints2D.FreezePosition | RigidbodyConstraints2D.FreezeRotation;
+            //}
+            //else
+            //{
+            //    rig.constraints = RigidbodyConstraints2D.None;
+            //    rig.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
+            //}
             if (transform.childCount==0) {
-
                 other.transform.SetParent(gameObject.transform);
-                PlayerController.PlayerMove = false;
             }
 
         }
     }
     private void OnCollisionExit2D(Collision2D other)
     {
-        //if (other.gameObject.name == "BoatDestination")
-        //{
-        //    GameObject player = GameObject.FindGameObjectWithTag("Player").gameObject;
-        //    Physics.IgnoreCollision(player.GetComponent<Collider>(), GetComponent<Collider>());
-        //    player.transform.SetParent(null);
-        //}
 
         if (other.gameObject.tag == "Player")
         {
-            
-              other.transform.SetParent(null);
-
+            if (transform.GetChild(0).gameObject.name == "Player") ;
+            other.transform.SetParent(null);
         }
     }
     public void reStartBoat() {

@@ -296,7 +296,7 @@ public class PlayerController : MonoBehaviour
             return;
         }
         if (!GameController.wind_count && !fire_count) return;
-        Debug.Log("burning");
+
 
 
 

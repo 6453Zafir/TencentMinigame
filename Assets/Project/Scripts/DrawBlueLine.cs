@@ -116,12 +116,9 @@ public class DrawBlueLine: MonoBehaviour
     {            
         if (GameController.wind_count && (Time.time- begin_time)>duration)
         {//风区持续时间到了
-            ////Debug.Log(GameController.InkDistance);
-            //Debug.Log("风区持续时间到了"+ Time.time);
-            BoatMove.begin_count = false;
-            PlayerController.begin_count = false;
+
             DeleteLine();
-            ////Debug.Log(HadDrawDistance+"haddraw");
+            
             return;
         }
         if (GameController.wind_count)
@@ -327,6 +324,8 @@ public class DrawBlueLine: MonoBehaviour
 
     public void DeleteLine()
     {
+        BoatMove.begin_count = false;
+        PlayerController.begin_count = false;
         GameController.wind_count = false;
         GameController.forceReady = false;
         int DelBlueLine_num = GameController.BlueLine_num;
